@@ -1,0 +1,59 @@
+{
+  "Root": {
+    "title": "Xin chào thế giới!",
+    "about": "Vào trang giới thiệu"
+  },
+  "BaseLayout": {
+    "LocaleLayout": {
+      "title": "Trang Chủ"
+    },
+    "Register": {
+      "label": "Đăng ký"
+    },
+    "Login": {
+      "label": "Đăng nhập"
+    }
+  },
+  "Form": {
+    "Login": {
+      "label": {
+        "email": "Email",
+        "password": "Mật khẩu"
+      },
+      "placeholder": {
+        "email": "Nhập email của bạn",
+        "password": "Nhập mật khẩu của bạn"
+      },
+      "link": {
+        "forgot": "Quên mật khẩu?",
+        "register": "Đăng ký"
+      },
+      "title": {
+        "login": "Đăng nhập",
+        "or": "Hoặc tiếp tục với",
+        "noAccount": "Bạn chưa có tài khoản?"
+      },
+      "button": {
+        "login": "Đăng nhập",
+        "google": "Đăng nhập với Google"
+      }
+    }
+  },
+  "Button": {
+    "DropdownMenu": {
+      "Option": {
+        "tooltip": "Tùy chọn"
+      }
+    },
+    "ModeToggle": {
+      "label": "Chuyển chế độ tối"
+    },
+    "LocaleSwitcher": {
+      "label": "Ngôn ngữ",
+      "locale": "{locale, select, en {Tiếng Anh} vi {Tiếng Việt} other {Unknown}}"
+    },
+    "Login": {
+      "label": "Đăng nhập"
+    }
+  }
+}

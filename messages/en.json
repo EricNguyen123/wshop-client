@@ -1,0 +1,59 @@
+{
+  "Root": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+  "BaseLayout": {
+    "LocaleLayout": {
+      "title": "Home"
+    },
+    "Register": {
+      "label": "Register"
+    },
+    "Login": {
+      "label": "Login"
+    }
+  },
+  "Form": {
+    "Login": {
+      "label": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "placeholder": {
+        "email": "Enter your email",
+        "password": "Enter your password"
+      },
+      "link": {
+        "forgot": "Forgot your password?",
+        "register": "Sign up"
+      },
+      "title": {
+        "login": "Welcome back",
+        "or": "Or continue with",
+        "noAccount": "Don't have an account?"
+      },
+      "button": {
+        "login": "Login",
+        "google": "Login with Google"
+      }
+    }
+  },
+  "Button": {
+    "DropdownMenu": {
+      "Option": {
+        "tooltip": "Options"
+      }
+    },
+    "ModeToggle": {
+      "label": "Toggle dark mode"
+    },
+    "LocaleSwitcher": {
+      "label": "Language",
+      "locale": "{locale, select, en {English} vi {Vietnamese} other {Unknown}}"
+    },
+    "Login": {
+      "label": "Login"
+    }
+  }
+}
