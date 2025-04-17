@@ -121,5 +121,63 @@
   }
 }
 
-@layer utilities {
+@utility scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Toast responsive styles */
+@layer components {
+  /* Custom toast container styles */
+  .toaster {
+    --viewport-padding: 16px;
+    position: fixed;
+    z-index: 100;
+  }
+
+  /* Mobile-specific toast styles */
+  @media (max-width: 640px) {
+    .toaster[data-position='top-center'] {
+      top: 50% !important;
+      left: 50% !important;
+      right: auto !important;
+      bottom: auto !important;
+      transform: translate(-50%, -50%) !important;
+      width: calc(100% - 12px);
+      max-width: 420px;
+    }
+
+    .toaster[data-position='bottom-center'] {
+      bottom: max(var(--viewport-padding), env(safe-area-inset-bottom, 16px));
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 420px;
+    }
+  }
+
+  /* Tablet-specific toast styles */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .toaster {
+      --viewport-padding: 20px;
+    }
+
+    .toaster[data-position='bottom-right'] {
+      bottom: var(--viewport-padding);
+      right: var(--viewport-padding);
+    }
+  }
+
+  /* Desktop-specific toast styles */
+  @media (min-width: 1025px) {
+    .toaster {
+      --viewport-padding: 32px;
+    }
+
+    .toaster[data-position='top-right'] {
+      top: var(--viewport-padding);
+      right: var(--viewport-padding);
+    }
+  }
 }

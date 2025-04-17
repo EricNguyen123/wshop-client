@@ -1,4 +1,38 @@
 {
+  "Zod": {
+    "auth": {
+      "register": {
+        "id": {
+          "invalid": "Invalid id"
+        },
+        "name": {
+          "short": "Name is too short"
+        },
+        "email": {
+          "invalid": "Invalid email"
+        },
+        "password": {
+          "short": "Password must be at least {length} characters long",
+          "minLengthLowCase": "Password must contain at least {minLengthLowCase} lowercase letter",
+          "minLengthUpCase": "Password must contain at least {minLengthUpCase} uppercase letter",
+          "minLengthNumber": "Password must contain at least {minLengthNumber} number",
+          "minSymbol": "Password must contain at least {minSymbol} symbol"
+        },
+        "confirmPassword": {
+          "invalid": "Passwords do not match"
+        }
+      },
+      "login": {
+        "email": {
+          "required": "Email is required",
+          "invalid": "Email is invalid"
+        },
+        "password": {
+          "required": "Password is required"
+        }
+      }
+    }
+  },
   "Root": {
     "title": "Hello world!",
     "about": "Go to the about page"
@@ -35,6 +69,37 @@
       },
       "button": {
         "login": "Login",
+        "google": "Login with Google"
+      },
+      "toast": {
+        "success": "Login successfully",
+        "error": "Login failed"
+      }
+    },
+    "Register": {
+      "label": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password"
+      },
+      "placeholder": {
+        "name": "Enter your name",
+        "email": "Enter your email",
+        "password": "Enter your password",
+        "confirmPassword": "Confirm your password"
+      },
+      "link": {
+        "forgot": "Forgot your password?",
+        "login": "Sign in"
+      },
+      "title": {
+        "register": "Sign up",
+        "or": "Or continue with",
+        "yesAccount": "Already have an account?"
+      },
+      "button": {
+        "register": "Sign up",
         "google": "Login with Google"
       }
     }

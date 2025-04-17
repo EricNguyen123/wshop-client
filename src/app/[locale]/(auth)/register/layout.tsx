@@ -12,5 +12,5 @@ export async function generateMetadata({ params }: Omit<IProps, 'children'>) {
 }
 
 export default function LayoutRegister({ children }: IProps) {
-  return <div className='w-full h-max flex flex-col items-start p-4'>{children}</div>;
+  return <div className='w-full h-full flex flex-col items-start p-1.5 rounded-xl'>{children}</div>;
 }

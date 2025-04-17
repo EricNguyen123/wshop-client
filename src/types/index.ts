@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode } from 'react';
 
 // interfaces
@@ -9,6 +10,13 @@ export interface IProps {
 export interface ITooltipProps {
   children: ReactNode;
   nameTooltip?: string;
+}
+
+export interface IBaseResponse {
+  status: number;
+  code: number;
+  message: string;
+  data?: any;
 }
 
 // types
@@ -25,3 +33,5 @@ export type TLocaleProps = {
   label: string;
   isPending?: boolean;
 };
+
+export type TStatusSlice = 'idle' | 'loading' | 'failed';

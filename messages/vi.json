@@ -1,4 +1,38 @@
 {
+  "Zod": {
+    "auth": {
+      "register": {
+        "id": {
+          "invalid": "Id không hợp lệ"
+        },
+        "name": {
+          "short": "Tên quá ngắn"
+        },
+        "email": {
+          "invalid": "Email không hợp lệ"
+        },
+        "password": {
+          "short": "Mật khẩu phải dài ít nhất {length} ký tự",
+          "minLengthLowCase": "Mật khẩu phải chứa ít nhất {minLengthLowCase} chữ thường",
+          "minLengthUpCase": "Mật khẩu phải chứa ít nhất {minLengthUpCase} chữ cái viết hoa",
+          "minLengthNumber": "Mật khẩu phải chứa ít nhất {minLengthNumber} số",
+          "minSymbol": "Mật khẩu phải chứa ít nhất {minSymbol} ký tự dặc biệt"
+        },
+        "confirmPassword": {
+          "invalid": "Mật khẩu khác nhau"
+        }
+      },
+      "login": {
+        "email": {
+          "required": "Email là bắt buộc",
+          "invalid": "Email này không hợp lệ"
+        },
+        "password": {
+          "required": "Mật khẩu là bắt buộc"
+        }
+      }
+    }
+  },
   "Root": {
     "title": "Xin chào thế giới!",
     "about": "Vào trang giới thiệu"
@@ -36,6 +70,37 @@
       "button": {
         "login": "Đăng nhập",
         "google": "Đăng nhập với Google"
+      },
+      "toast": {
+        "success": "Đăng nhập thành công",
+        "error": "Đăng nhập thất bại."
+      }
+    },
+    "Register": {
+      "label": {
+        "name": "Họ tên",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "confirmPassword": "Xác nhận mật khẩu"
+      },
+      "placeholder": {
+        "name": "Nhập tên của bạn",
+        "email": "Nhập email của bạn",
+        "password": "Nhập mật khẩu của bạn",
+        "confirmPassword": "Xác nhận mật khẩu"
+      },
+      "link": {
+        "forgot": "Quên mật khẩu?",
+        "login": "Đăng nhập"
+      },
+      "title": {
+        "register": "Đăng ký",
+        "or": "Hoặc tiếp tục với",
+        "yesAccount": "Đã có tài khoản?"
+      },
+      "button": {
+        "register": "Đăng ký",
+        "google": "Đăng ký với Google"
       }
     }
   },

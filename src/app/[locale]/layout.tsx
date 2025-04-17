@@ -3,6 +3,7 @@ import { routing } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 import BaseLayout from '@/components/base-layout';
 import { IProps, TLocale } from '@/types';
+import BaseLoading from '@/components/base-loading';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -25,6 +26,7 @@ export default async function LocaleLayout({ children, params }: IProps) {
 
   return (
     <BaseLayout locale={locale}>
+      <BaseLoading />
       <div className='w-full h-full flex-1 box-border overflow-scroll'>{children}</div>
     </BaseLayout>
   );
