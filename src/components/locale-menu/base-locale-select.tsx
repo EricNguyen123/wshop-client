@@ -14,7 +14,7 @@ export default function BaseLocaleSelect({ children, label, isPending }: TLocale
       <DropdownMenuSubTrigger disabled={isPending}>{label}</DropdownMenuSubTrigger>
       <DropdownMenuPortal>
         <DropdownMenuSubContent>
-          <DropdownMenuLabel>{label}</DropdownMenuLabel>
+          <DropdownMenuLabel className='font-extrabold'>{label}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {children}
         </DropdownMenuSubContent>

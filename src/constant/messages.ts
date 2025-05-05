@@ -1,5 +1,6 @@
 import { objectToString } from '@/utils';
 import { VALIDATION_CONFIG } from '.';
+import { useTranslations } from 'next-intl';
 
 export const MESSAGES = {
   ZOD: {
@@ -43,4 +44,13 @@ export const MESSAGES = {
       },
     },
   },
+};
+
+export const DEFAULT_EMPTY_MESSAGE = ({ key }: { key: 'information' }) => {
+  const t = useTranslations('Messages.empty');
+
+  switch (key) {
+    case 'information':
+      return t('information');
+  }
 };

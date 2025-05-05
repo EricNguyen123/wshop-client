@@ -4,21 +4,23 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 
 import authReducer from './features/auth/slice';
+import userReducer from './features/user/slice';
 
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['value', 'authenticated'],
+  whitelist: ['value', 'authenticated', 'currentAccount'],
 };
 
 const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'user'],
 };
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
+  user: userReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

@@ -4,8 +4,13 @@ const routes = {
     login: 'login',
     home: '/',
     logout: 'logout',
+    forgotPassword: 'forgot-password',
+    verifyRestore: 'verify-restore',
   },
-  private: {},
+  private: {
+    account: '/manager/account',
+    users: '/manager/users',
+  },
   protected: {
     google: '/auth/google/login',
   },

@@ -13,7 +13,7 @@ export default function RegisterBase() {
           className='absolute inset-0 h-full w-full object-cover rounded-l-2xl'
         />
       </div>
-      <div className='h-full flex flex-col gap-4 md:p-auto lg:border lg:rounded-r-2xl overflow-hidden'>
+      <div className='h-full flex flex-col gap-4 md:p-auto lg:border lg:rounded-r-2xl py-3.5 overflow-hidden'>
         <div className='h-full overflow-auto scrollbar-hidden flex flex-1 items-start justify-center'>
           <div className='w-full max-w-md px-2 py-3.5 md:mx-auto md:py-5'>
             <RegisterForm />

@@ -3,7 +3,7 @@
 import React from 'react';
 import { toast } from 'sonner';
 import { IconButton } from '../button/button-icon';
-import { CircleCheck, X } from 'lucide-react';
+import { CircleCheck, Info, ServerCrash, TriangleAlert, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 
@@ -71,7 +71,6 @@ export function showCustomToast({
         className={cn(
           'rounded-lg shadow-lg p-4 max-w-md w-full relative border',
           'animate-in fade-in-0 zoom-in-95 duration-300',
-          'font-[family-name:var(--font-comfortaa-sans)]',
           isMobile ? 'mx-auto' : 'min-w-sm',
           classes.container
         )}
@@ -130,6 +129,7 @@ export const showSuccessToast = (
 
 export const showErrorToast = (message: React.ReactNode, action?: ICustomToastProps['action']) => {
   return showCustomToast({
+    icon: ServerCrash,
     title: 'Error',
     message,
     action,
@@ -142,6 +142,7 @@ export const showWarningToast = (
   action?: ICustomToastProps['action']
 ) => {
   return showCustomToast({
+    icon: TriangleAlert,
     title: 'Warning',
     message,
     action,
@@ -151,6 +152,7 @@ export const showWarningToast = (
 
 export const showInfoToast = (message: React.ReactNode, action?: ICustomToastProps['action']) => {
   return showCustomToast({
+    icon: Info,
     title: 'Info',
     message,
     action,

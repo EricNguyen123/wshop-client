@@ -46,6 +46,21 @@
     },
     "Login": {
       "label": "Login"
+    },
+    "ForgotPassword": {
+      "label": "Forgot Password"
+    },
+    "Users": {
+      "label": "Users",
+      "information": {
+        "label": "Information"
+      }
+    },
+    "Account": {
+      "label": "Account"
+    },
+    "VerifyRestore": {
+      "label": "Verify Restore"
     }
   },
   "Form": {
@@ -70,10 +85,6 @@
       "button": {
         "login": "Login",
         "google": "Login with Google"
-      },
-      "toast": {
-        "success": "Login successfully",
-        "error": "Login failed"
       }
     },
     "Register": {
@@ -91,7 +102,8 @@
       },
       "link": {
         "forgot": "Forgot your password?",
-        "login": "Sign in"
+        "login": "Sign in",
+        "verifyRestore": "Verify Restore Account"
       },
       "title": {
         "register": "Sign up",
@@ -101,6 +113,163 @@
       "button": {
         "register": "Sign up",
         "google": "Login with Google"
+      }
+    },
+    "Logout": {
+      "button": "Logout"
+    },
+    "ForgotPassword": {
+      "label": {
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password"
+      },
+      "placeholder": {
+        "newPassword": "Enter your new password",
+        "confirmPassword": "Confirm your new password"
+      },
+      "button": {
+        "save": "Save",
+        "cancel": "Cancel"
+      },
+      "title": {
+        "forgotPassword": "Change Your Password"
+      }
+    },
+    "EmailOTP": {
+      "label": {
+        "email": "Email"
+      },
+      "placeholder": {
+        "email": "Enter your email"
+      },
+      "title": {
+        "email": "Email Verification"
+      },
+      "button": {
+        "next": "Next"
+      }
+    },
+    "OTP": {
+      "title": {
+        "otp": "OTP Verification",
+        "success": "Success"
+      },
+      "label": {
+        "timeRemaining": "Time remaining",
+        "resend": "Resend OTP"
+      }
+    },
+    "Flows": {
+      "label": {
+        "email": "Email",
+        "verification": "Verification",
+        "newPassword": "New Password"
+      },
+      "button": {
+        "continue": "Continue"
+      }
+    },
+    "ChangePassword": {
+      "label": {
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password"
+      },
+      "placeholder": {
+        "currentPassword": "Enter your current password",
+        "newPassword": "Enter your new password",
+        "confirmPassword": "Confirm your new password"
+      },
+      "button": {
+        "save": "Save",
+        "cancel": "Cancel"
+      },
+      "title": {
+        "changePassword": "Change Your Password"
+      }
+    },
+    "UserInformation": {
+      "label": {
+        "name": "Name",
+        "phone": "Phone"
+      },
+      "placeholder": {
+        "name": "Enter your name",
+        "phone": "Enter your phone"
+      },
+      "button": {
+        "save": "Save",
+        "cancel": "Cancel"
+      },
+      "title": {
+        "information": "User Information"
+      }
+    },
+    "UserAddress": {
+      "label": {
+        "prefecture": "Prefecture",
+        "city": "City",
+        "street": "Street",
+        "building": "Building",
+        "zipcode": "Zipcode"
+      },
+      "placeholder": {
+        "prefecture": "Enter your prefecture",
+        "city": "Enter your city",
+        "street": "Enter your street",
+        "building": "Enter your building",
+        "zipcode": "Enter your zipcode"
+      },
+      "button": {
+        "save": "Save",
+        "cancel": "Cancel"
+      },
+      "title": {
+        "address": "Address Information"
+      }
+    },
+    "UserEdit": {
+      "label": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "role": "Role",
+        "status": "Status",
+        "prefecture": "Prefecture",
+        "city": "City",
+        "street": "Street",
+        "building": "Building",
+        "zipcode": "Zipcode"
+      },
+      "placeholder": {
+        "name": "Enter your name",
+        "email": "Enter your email",
+        "phone": "Enter your phone",
+        "selectRole": "Select Role",
+        "prefecture": "Enter your prefecture",
+        "city": "Enter your city",
+        "street": "Enter your street",
+        "building": "Enter your building",
+        "zipcode": "Enter your zipcode"
+      },
+      "button": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "create": "Create User"
+      },
+      "title": {
+        "edit": "Edit User",
+        "create": "Create User"
+      },
+      "role": {
+        "USER": "User",
+        "ADMIN": "Admin",
+        "EDITOR": "Editor",
+        "UNKNOWN": "Unknown"
+      },
+      "active": {
+        "0": "No Active",
+        "1": "Active"
       }
     }
   },
@@ -120,5 +289,165 @@
     "Login": {
       "label": "Login"
     }
+  },
+  "Component": {
+    "ManageMenu": {
+      "label": "My Account",
+      "account": "Manage Account"
+    },
+    "BaseSidebar": {
+      "users": {
+        "label": "Users",
+        "manage": "Manage Users"
+      },
+      "account": {
+        "label": "My Account"
+      }
+    },
+    "BaseDropBox": {
+      "changePassword": {
+        "label": "Change Password",
+        "description": "Change your password here"
+      }
+    },
+    "UserProfile": {
+      "title": "Detail Profile",
+      "titleListUser": "Manage Users",
+      "fields": {
+        "id": "ID",
+        "name": "Name",
+        "email": "Email",
+        "role": "Role",
+        "status": "Status",
+        "phone": "Phone",
+        "zipcode": "Zipcode",
+        "prefecture": "Prefecture",
+        "city": "City",
+        "street": "Street",
+        "building": "Building",
+        "currentSignInAt": "Current Sign In At",
+        "lastSignInAt": "Last Sign In At"
+      },
+      "sections": {
+        "userInfo": "User Information",
+        "addressInfo": "Address Information",
+        "loginInfo": "Login Information"
+      },
+      "active": {
+        "0": "No Active",
+        "1": "Active"
+      },
+      "role": {
+        "USER": "User",
+        "ADMIN": "Admin",
+        "EDITOR": "Editor",
+        "UNKNOWN": "Unknown",
+        "dialogs": {
+          "changeRole": "Change Role",
+          "changeRoleDescription": "Change your role here",
+          "currentRole": "Current Role",
+          "selectNewRole": "New Role",
+          "selectRole": "Select Role",
+          "changeSuccess": "Change role successfully",
+          "cancel": "Cancel",
+          "save": "Save"
+        }
+      },
+      "info": {
+        "dialogs": {
+          "updateInfo": "Update Information",
+          "updateInfoDescription": "Update your information here",
+          "updateAddress": "Update Address",
+          "updateAddressDescription": "Update your address here"
+        }
+      },
+      "actions": {
+        "copyId": "Copy ID",
+        "edit": "Edit",
+        "detail": "Detail",
+        "delete": "Delete",
+        "dialogs": {
+          "edit": {
+            "title": "Edit User",
+            "cancel": "Cancel",
+            "save": "Save"
+          },
+          "delete": {
+            "title": "Delete User"
+          }
+        }
+      }
+    },
+    "Tables": {
+      "columns": {
+        "title": "Columns",
+        "toggleColumns": "Toggle Columns"
+      },
+      "filter": {
+        "title": "Search information..."
+      },
+      "noResults": "No results found",
+      "tryAdjustingFilters": "Try adjusting your filters"
+    },
+    "Input": {
+      "Search": {
+        "placeholder": "Search..."
+      }
+    }
+  },
+  "Messages": {
+    "empty": {
+      "information": "No information available"
+    },
+    "error": {
+      "toast": {
+        "error": "Internal server error",
+        "200": "OK",
+        "201": "Created",
+        "400": "Bad Request",
+        "401": "Unauthorized",
+        "403": "Forbidden",
+        "404": "Page Not found",
+        "500": "Internal Server Error",
+        "1000": "Created Successfully",
+        "1001": "Updated Successfully",
+        "1002": "Deleted Successfully",
+        "1003": "Get successfully",
+        "2000": "User not found",
+        "2001": "Email existed",
+        "2002": "User existed",
+        "2003": "Update user failed",
+        "2004": "This user was previously deleted.",
+        "3000": "Incorrect login information",
+        "3001": "User is not active",
+        "3002": "Invalid token",
+        "3003": "Logout successfully",
+        "3004": "Change password successfully",
+        "3005": "Incorrect password",
+        "3006": "Invalid token",
+        "3007": "Failed to send OTP to your email",
+        "3008": "Success send OTP to your email",
+        "3009": "Invalid OTP",
+        "3010": "OTP verified successfully",
+        "3011": "'OTP expired'",
+        "3012": "Login successfully",
+        "3013": "Sign up successfully",
+        "3014": "Please Provide The Password",
+        "3016": "Sign up failed",
+        "3017": "Authorization header missing",
+        "3018": "Token is missing",
+        "3019": "Token expired",
+        "4000": "Validation failed",
+        "4001": "Unknown validation error"
+      }
+    }
+  },
+  "Delete": {
+    "title": "Delete",
+    "confirmTitle": "Delete",
+    "description": "Are you sure you want to delete",
+    "description_1": "?",
+    "cancel": "Cancel",
+    "delete": "Delete"
   }
 }

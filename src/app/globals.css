@@ -121,11 +121,11 @@
   }
 }
 
-@utility scrollbar-hidden {
+/* @utility scrollbar-hidden {
   &::-webkit-scrollbar {
     display: none;
   }
-}
+} */
 
 /* Toast responsive styles */
 @layer components {
@@ -179,5 +179,110 @@
       top: var(--viewport-padding);
       right: var(--viewport-padding);
     }
+  }
+}
+
+@layer components {
+  .custom-scrollbar {
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: var(--color-muted) transparent; /* For Firefox */
+
+    /* For Chrome, Safari, and Edge */
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: var(--radius-md);
+      margin: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-muted-foreground);
+      border-radius: var(--radius-md);
+      opacity: 0.5;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: var(--color-primary);
+      }
+    }
+
+    &::-webkit-scrollbar-horizontal {
+      height: 8px;
+    }
+  }
+
+  .dark .custom-scrollbar {
+    scrollbar-color: var(--color-muted-foreground) transparent;
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-muted-foreground);
+      opacity: 0.7;
+
+      &:hover {
+        background-color: var(--color-primary);
+      }
+    }
+  }
+
+  .custom-scrollbar-light {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-secondary-foreground) transparent;
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-secondary-foreground);
+      opacity: 0.5;
+    }
+  }
+
+  .custom-scrollbar-subtle {
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-border);
+      opacity: 0.3;
+
+      &:hover {
+        background-color: var(--color-muted-foreground);
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .custom-scrollbar-hover {
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+
+    &:hover::-webkit-scrollbar-thumb {
+      background-color: var(--color-muted-foreground);
+      opacity: 0.5;
+    }
+  }
+}
+
+@keyframes fadeInScrollbar {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@utility scrollbar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
   }
 }

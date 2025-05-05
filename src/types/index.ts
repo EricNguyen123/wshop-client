@@ -19,6 +19,14 @@ export interface IBaseResponse {
   data?: any;
 }
 
+export interface IBaseGetListResponse {
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+  data: any[];
+}
+
 // types
 export type TLocale = 'en';
 

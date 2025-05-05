@@ -46,6 +46,21 @@
     },
     "Login": {
       "label": "Đăng nhập"
+    },
+    "ForgotPassword": {
+      "label": "Quên mật khẩu"
+    },
+    "Users": {
+      "label": "Người dùng",
+      "information": {
+        "label": "Thông tin"
+      }
+    },
+    "Account": {
+      "label": "Tài khoản"
+    },
+    "VerifyRestore": {
+      "label": "Xác thực khôi phục"
     }
   },
   "Form": {
@@ -70,10 +85,6 @@
       "button": {
         "login": "Đăng nhập",
         "google": "Đăng nhập với Google"
-      },
-      "toast": {
-        "success": "Đăng nhập thành công",
-        "error": "Đăng nhập thất bại."
       }
     },
     "Register": {
@@ -91,7 +102,8 @@
       },
       "link": {
         "forgot": "Quên mật khẩu?",
-        "login": "Đăng nhập"
+        "login": "Đăng nhập",
+        "verifyRestore": "Xác thực khôi phục tài khoản"
       },
       "title": {
         "register": "Đăng ký",
@@ -101,6 +113,163 @@
       "button": {
         "register": "Đăng ký",
         "google": "Đăng ký với Google"
+      }
+    },
+    "Logout": {
+      "button": "Đăng xuất"
+    },
+    "ForgotPassword": {
+      "label": {
+        "newPassword": "Mật khẩu mới",
+        "confirmPassword": "Xác nhận mật khẩu mới"
+      },
+      "placeholder": {
+        "newPassword": "Nhập mật khẩu mới của bạn",
+        "confirmPassword": "Xác nhận mật khẩu mới"
+      },
+      "button": {
+        "save": "Lưu",
+        "cancel": "Hủy"
+      },
+      "title": {
+        "forgotPassword": "Đổi mật khẩu của bạn"
+      }
+    },
+    "EmailOTP": {
+      "label": {
+        "email": "Email"
+      },
+      "placeholder": {
+        "email": "Nhập email của bạn"
+      },
+      "title": {
+        "email": "Xác thực email"
+      },
+      "button": {
+        "next": "Tiếp theo"
+      }
+    },
+    "OTP": {
+      "title": {
+        "otp": "Xác thực OTP",
+        "success": "Thành công"
+      },
+      "label": {
+        "timeRemaining": "Thời gian còn lại",
+        "resend": "Gửi lại mã OTP"
+      }
+    },
+    "Flows": {
+      "label": {
+        "email": "Email",
+        "verification": "Xác thực",
+        "newPassword": "Mật khẩu mới"
+      },
+      "button": {
+        "continue": "Tiếp tục"
+      }
+    },
+    "ChangePassword": {
+      "label": {
+        "currentPassword": "Mật kháu hiện tại",
+        "newPassword": "Mật khẩu mới",
+        "confirmPassword": "Xác nhận mật khẩu mới"
+      },
+      "placeholder": {
+        "currentPassword": "Nhập mật khẩu của bạn",
+        "newPassword": "Nhập mật khẩu mới của bạn",
+        "confirmPassword": "Xác nhận mật khẩu mới"
+      },
+      "button": {
+        "save": "Lưu",
+        "cancel": "Hủy"
+      },
+      "title": {
+        "changePassword": "Đổi mật khẩu của bạn"
+      }
+    },
+    "UserInformation": {
+      "label": {
+        "name": "Họ tên",
+        "phone": "Số diện thoại"
+      },
+      "placeholder": {
+        "name": "Nhập tên của bạn",
+        "phone": "Nhập số diện thoại của bạn"
+      },
+      "button": {
+        "save": "Lưu",
+        "cancel": "Hủy"
+      },
+      "title": {
+        "information": "Thống tin cá nhân"
+      }
+    },
+    "UserAddress": {
+      "label": {
+        "prefecture": "Quận",
+        "city": "Thành phố",
+        "street": "Đường",
+        "building": "Toà nhà",
+        "zipcode": "Zipcode"
+      },
+      "placeholder": {
+        "prefecture": "Nhập quận của bạn",
+        "city": "Nhập thành phố của bạn",
+        "street": "Nhập đường của bạn",
+        "building": "Nhập toà nhà của bạn",
+        "zipcode": "Nhập Zipcode của bạn"
+      },
+      "button": {
+        "save": "Lưu",
+        "cancel": "Hủy"
+      },
+      "title": {
+        "address": "Thông tin địa chỉ"
+      }
+    },
+    "UserEdit": {
+      "label": {
+        "name": "Họ tên",
+        "email": "Email",
+        "phone": "Số diện thoại",
+        "role": "Vai trò",
+        "status": "Trạng thái",
+        "prefecture": "Quận",
+        "city": "Thành phố",
+        "street": "Đường",
+        "building": "Toà nhà",
+        "zipcode": "Zipcode"
+      },
+      "placeholder": {
+        "name": "Nhập tên của bạn",
+        "email": "Nhập email của bạn",
+        "phone": "Nhập số diện thoại của bạn",
+        "selectRole": "Chọn vai trò",
+        "prefecture": "Nhập quận của bạn",
+        "city": "Nhập thành phố của bạn",
+        "street": "Nhập đường của bạn",
+        "building": "Nhập toà nhà của bạn",
+        "zipcode": "Nhập Zipcode của bạn"
+      },
+      "button": {
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "create": "Tạo người dùng"
+      },
+      "title": {
+        "edit": "Chỉnh sửa thông tin người dùng",
+        "create": "Tạo người dùng mới"
+      },
+      "role": {
+        "USER": "Người dùng",
+        "ADMIN": "Quản trị viên",
+        "EDITOR": "Người chỉnh sửa",
+        "UNKNOWN": "Unknown"
+      },
+      "active": {
+        "0": "Chưa kích hoạt",
+        "1": "Đã kích hoạt"
       }
     }
   },
@@ -120,5 +289,159 @@
     "Login": {
       "label": "Đăng nhập"
     }
+  },
+  "Component": {
+    "ManageMenu": {
+      "label": "Tài khoản của tôi",
+      "account": "Quản lý tài khoản"
+    },
+    "BaseSidebar": {
+      "users": {
+        "label": "Người dùng",
+        "manage": "Quản lý người dùng"
+      },
+      "account": {
+        "label": "Tài khoản"
+      }
+    },
+    "BaseDropBox": {
+      "changePassword": {
+        "label": "Đổi mật khẩu",
+        "description": "Thay đổi mật khẩu của bạn tại đây"
+      }
+    },
+    "UserProfile": {
+      "title": "Thông tin chi tiết",
+      "titleListUser": "Quản trị người dùng",
+      "fields": {
+        "id": "ID",
+        "name": "Tên",
+        "email": "Email",
+        "role": "Vai trò",
+        "status": "Trạng thái",
+        "phone": "Số điện thoại",
+        "zipcode": "Zipcode",
+        "prefecture": "Quận",
+        "city": "Thành phố",
+        "street": "Đường",
+        "building": "Toà nhà",
+        "currentSignInAt": "Ngày đăng nhập",
+        "lastSignInAt": "Ngày cuối đăng nhập"
+      },
+      "sections": {
+        "userInfo": "Thông tin người dùng",
+        "addressInfo": "Thông tin địa chỉ",
+        "loginInfo": "Thống tin đăng nhập"
+      },
+      "active": {
+        "0": "Chưa kích hoạt",
+        "1": "Đã kích hoạt"
+      },
+      "role": {
+        "USER": "Người dùng",
+        "ADMIN": "Quản trị viên",
+        "EDITOR": "Người chỉnh sửa",
+        "UNKNOWN": "Unknown",
+        "dialogs": {
+          "changeRole": "Đổi vai trò",
+          "changeRoleDescription": "Thay đổi vai trò của người dùng tại đây",
+          "currentRole": "Vai trò hiện tại",
+          "selectNewRole": "Vai trò hiện tại",
+          "selectRole": "Vai trò",
+          "changeSuccess": "Đổi vai trò thành công",
+          "cancel": "Hủy",
+          "save": "Lưu"
+        }
+      },
+      "info": {
+        "dialogs": {
+          "updateInfo": "Cập nhật thông tin",
+          "updateInfoDescription": "Cập nhật thông tin người dùng tại đây",
+          "updateAddress": "Cập nhật địa chỉ",
+          "updateAddressDescription": "Cập nhật địa chỉ người dùng tại đây"
+        }
+      },
+      "actions": {
+        "copyId": "Sao chép ID",
+        "edit": "Chỉnh sửa",
+        "detail": "Chi tiết",
+        "delete": "Xoá",
+        "dialogs": {
+          "edit": {
+            "title": "Chỉnh sửa thông tin người dùng",
+            "cancel": "Hủy",
+            "save": "Lưu"
+          },
+          "delete": {
+            "title": "Xóa người dùng"
+          }
+        }
+      }
+    },
+    "Tables": {
+      "columns": {
+        "title": "Cột",
+        "toggleColumns": "Chọn cột"
+      },
+      "filter": {
+        "title": "Tìm kiếm thông tin..."
+      },
+      "noResults": "Không tìm thấy kết quả nào",
+      "tryAdjustingFilters": "Hãy thử điều chỉnh bộ lọc của bạn"
+    },
+    "Input": {
+      "Search": {
+        "placeholder": "Tìm kiếm..."
+      }
+    }
+  },
+  "Messages": {
+    "empty": {
+      "information": "Thông tin không có sẵn"
+    },
+    "error": {
+      "toast": {
+        "error": "Lỗi máy chủ nội bộ",
+        "200": "Thành công",
+        "201": "Tạo mới",
+        "400": "Lỗi người dùng",
+        "401": "Cần xác thực đăng nhập",
+        "403": "Không được phép",
+        "404": "Không tìm thấy trang",
+        "500": "Lỗi máy chủ nội bộ",
+        "1000": "Tạo mới thành công",
+        "1001": "Cập nhật thành công",
+        "1002": "Xoá thành công",
+        "1003": "Lấy thông tin thành công",
+        "2000": "Không tìm thấy người dùng",
+        "2002": "Người dùng đã tồn tại",
+        "2003": "Cập nhật người dùng không thành công",
+        "2004": "Người dùng này đã được xoá trước đó",
+        "3000": "Thông tin đăng nhập không chính xác",
+        "3001": "Người dùng không hoạt động",
+        "3002": "Mã người dùng không hợp lệ",
+        "3003": "Đăng xuất thành công",
+        "3004": "Đổi mật khẩu thành công",
+        "3005": "Mật khẩu không chính xác",
+        "3006": "Mã thông báo không hợp lệ",
+        "3007": "Không gửi được OTP đến email của bạn",
+        "3008": "Gửi OTP thành công đến email của bạn",
+        "3009": "OTP không hợp lệ",
+        "3010": "OTP đã xác minh thành công",
+        "3011": "'OTP đã hết hạn'",
+        "3012": "Đăng nhập thành công",
+        "3013": "Đăng ký thành công",
+        "3014": "Vui lòng cung cấp mật khẩu",
+        "3016": "Đăng ký không thành công"
+      }
+    }
+  },
+  "Delete": {
+    "title": "Xóa",
+    "confirmTitle": "Xóa",
+    "description": "Bạn chắc chắn muốn xoá",
+    "description_1": "?",
+    "cancel": "Hủy",
+    "delete": "Xóa"
   }
 }
