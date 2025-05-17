@@ -29,3 +29,20 @@ export const query = {
   total: 0,
   totalPages: 1,
 };
+
+export const unknownFile = {
+  size: 'Unknown size',
+  name: 'Unknown file',
+  type: 'File type unknown',
+  error: 'File size unknown',
+};
+
+export const columnsKeyBanner = {
+  select: 'select',
+  url: 'url',
+  descriptions: 'descriptions',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  numberOrder: 'numberOrder',
+  actions: 'actions',
+};

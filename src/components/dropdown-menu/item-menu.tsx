@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
@@ -7,7 +8,7 @@ type ItemProps = {
   icon?: React.ReactNode;
   children: React.ReactNode;
   route?: string | undefined;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
   className?: string;
 };
 

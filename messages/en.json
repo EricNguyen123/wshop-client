@@ -31,6 +31,25 @@
           "required": "Password is required"
         }
       }
+    },
+    "banner": {
+      "create": {
+        "url": {
+          "required": "URL is required"
+        },
+        "descriptions": {
+          "required": "Description is required"
+        },
+        "startDate": {
+          "required": "Start date is required"
+        },
+        "endDate": {
+          "required": "End date is required"
+        },
+        "numberOrder": {
+          "required": "Number must be greater than 0"
+        }
+      }
     }
   },
   "Root": {
@@ -61,6 +80,10 @@
     },
     "VerifyRestore": {
       "label": "Verify Restore"
+    },
+    "Banner": {
+      "label": "Banners",
+      "detail": "Detail Banner"
     }
   },
   "Form": {
@@ -271,12 +294,44 @@
         "0": "No Active",
         "1": "Active"
       }
+    },
+    "BannerCreate": {
+      "label": {
+        "description": "Description",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "numberOrder": "Location",
+        "dateRange": "Date Range"
+      },
+      "placeholder": {
+        "description": "Enter your description",
+        "startDate": "Enter your start date",
+        "endDate": "Enter your end date",
+        "numberOrder": "Enter your location",
+        "selectDateRange": "Select Date Range",
+        "uploadImage": "Upload Image",
+        "uploadImageSubtext": "Drag and drop your image here",
+        "uploadImageNote": "Supports images up to"
+      },
+      "button": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "create": "Create Banner"
+      },
+      "title": {
+        "edit": "Edit Banner",
+        "create": "Create Banner"
+      }
     }
   },
   "Button": {
     "DropdownMenu": {
       "Option": {
         "tooltip": "Options"
+      },
+      "BannerFilter": {
+        "tooltip": "Banner Filter",
+        "all": "All Banner"
       }
     },
     "ModeToggle": {
@@ -302,12 +357,19 @@
       },
       "account": {
         "label": "My Account"
+      },
+      "banners": {
+        "label": "Banners"
       }
     },
     "BaseDropBox": {
       "changePassword": {
         "label": "Change Password",
         "description": "Change your password here"
+      },
+      "uploadAvatar": {
+        "label": "Avatar",
+        "description": "Your avatar here"
       }
     },
     "UserProfile": {
@@ -392,6 +454,59 @@
     "Input": {
       "Search": {
         "placeholder": "Search..."
+      },
+      "Avatar": {
+        "title1": "Upload Avatar",
+        "title2": "Crop avatar",
+        "cancel": "Cancel",
+        "save": "Save",
+        "description1": "Drop the image here",
+        "description2": "Drag and drop your image here",
+        "description3": "or click to browse"
+      }
+    },
+    "Banners": {
+      "titleListBanners": "Manage Banners",
+      "title": "Detail Banner",
+      "fields": {
+        "id": "ID",
+        "url": "Banner",
+        "descriptions": "Description",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "numberOrder": "Location"
+      },
+      "actions": {
+        "copyId": "Copy ID",
+        "edit": "Edit",
+        "detail": "Detail",
+        "delete": "Delete",
+        "dialogs": {
+          "edit": {
+            "title": "Edit Banner",
+            "cancel": "Cancel",
+            "save": "Save"
+          },
+          "delete": {
+            "title": "Delete Banner"
+          }
+        }
+      },
+      "sections": {
+        "bannerInfo": "Banner Information"
+      }
+    },
+    "Buttons": {
+      "add": "Add",
+      "cancel": "Cancel",
+      "save": "Save",
+      "delete": "Delete",
+      "showLess": "Show less",
+      "showMore": "Show more"
+    },
+    "DatePicker": {
+      "DateRangePicker": {
+        "placeholder": "Select date range"
       }
     }
   },
@@ -438,7 +553,26 @@
         "3018": "Token is missing",
         "3019": "Token expired",
         "4000": "Validation failed",
-        "4001": "Unknown validation error"
+        "4001": "Unknown validation error",
+        "5000": "Upload file error",
+        "5001": "Attachment not found",
+        "5002": "Blob not found",
+        "5003": "Delete file error",
+        "5004": "Delete file successfully",
+        "5005": "File not found on disk",
+        "5006": "Only image, PDF, Word, Excel, and text files are allowed!",
+        "6000": "Media not found",
+        "7000": "Start date must be less than end date",
+        "7001": "Banner Day Has Been Lived"
+      },
+      "file": {
+        "preview": "Failed to create object URL for preview",
+        "revoke": "Failed to revoke object URL",
+        "upload": "Supports images, PDFs, and documents up to",
+        "note": "Upload up to",
+        "files": "files",
+        "notification": "files selected",
+        "more": "more allowed"
       }
     }
   },

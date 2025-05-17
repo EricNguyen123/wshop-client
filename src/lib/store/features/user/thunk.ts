@@ -6,24 +6,29 @@ import {
   IGetDetailUserReq,
   IGetListUsersReq,
   IUpdateUserReq,
+  IUploadAvatarReq,
 } from '@/types/common';
 import { AppDispatch } from '../../store';
 import {
   changePasswordSuccess,
   createUserSuccess,
+  deleteAvatarSuccess,
   deleteUserSuccess,
   getDetailUserSuccess,
   getListUsersSuccess,
   setStatus,
   updateUserSuccess,
+  uploadAvatarSuccess,
 } from './slice';
 import {
   changePasswordApi,
   createUserApi,
+  deleteAvatarApi,
   deleteUserApi,
   getDetailUserApi,
   getListUsersApi,
   updateUserApi,
+  uploadAvatarApi,
 } from './api';
 
 export const changePasswordAsync =
@@ -136,6 +141,45 @@ export const deleteUserAsync =
       const response = await deleteUserApi({ userId: data.value.userId });
       if (response.status === 200) {
         dispatch(deleteUserSuccess({ id: data.value.userId }));
+        data.setToastSuccess(response.code);
+      }
+    } catch (error: any) {
+      dispatch(setStatus('failed'));
+      if (error) {
+        data.setToastError(error.response.data.code || error.status);
+      }
+    }
+  };
+
+export const uploadAvatarAsync =
+  (payload: { data: IUploadAvatarReq }) => async (dispatch: AppDispatch) => {
+    const { data } = payload;
+    dispatch(setStatus('loading'));
+    try {
+      const formData = new FormData();
+      formData.append('file', data.value.file);
+      formData.append('userId', data.value.userId);
+      const response = await uploadAvatarApi({ data: formData });
+      if (response.status === 200) {
+        dispatch(uploadAvatarSuccess(response));
+        data.setToastSuccess(response.code);
+      }
+    } catch (error: any) {
+      dispatch(setStatus('failed'));
+      if (error) {
+        data.setToastError(error.response.data.code || error.status);
+      }
+    }
+  };
+
+export const deleteAvatarAsync =
+  (payload: { data: IDeleteUserReq }) => async (dispatch: AppDispatch) => {
+    const { data } = payload;
+    dispatch(setStatus('loading'));
+    try {
+      const response = await deleteAvatarApi({ userId: data.value.userId });
+      if (response.status === 200) {
+        dispatch(deleteAvatarSuccess());
         data.setToastSuccess(response.code);
       }
     } catch (error: any) {

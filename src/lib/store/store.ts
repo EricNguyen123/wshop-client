@@ -5,6 +5,7 @@ import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist
 
 import authReducer from './features/auth/slice';
 import userReducer from './features/user/slice';
+import bannerReducer from './features/banner/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -15,12 +16,13 @@ const authPersistConfig = {
 const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'user'],
+  whitelist: ['auth', 'user', 'banner'],
 };
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   user: userReducer,
+  banner: bannerReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

@@ -51,7 +51,7 @@ export default function BaseDropBox({
   };
 
   const iconVariants = {
-    open: { rotate: 180, transition: { duration: 0.3 } },
+    open: { rotate: 270, transition: { duration: 0.3 } },
     closed: { rotate: 0, transition: { duration: 0.3 } },
   };
 

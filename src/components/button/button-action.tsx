@@ -213,7 +213,7 @@ export function ActionButton<T = unknown>({
         open={dialogState.open}
         onOpenChange={(open) => setDialogState((prev) => ({ ...prev, open }))}
       >
-        <DialogContent className='sm:max-w-md'>
+        <DialogContent>
           {dialogState.title && (
             <DialogHeader>
               <DialogTitle>{dialogState.title}</DialogTitle>

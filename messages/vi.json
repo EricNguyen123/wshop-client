@@ -31,6 +31,25 @@
           "required": "Mật khẩu là bắt buộc"
         }
       }
+    },
+    "banner": {
+      "create": {
+        "url": {
+          "required": "URL là bắt buộc"
+        },
+        "descriptions": {
+          "required": "Mô tả là bắt buộc"
+        },
+        "startDate": {
+          "required": "Ngày bắt đầu là bắt buộc"
+        },
+        "endDate": {
+          "required": "Ngày kết thúc là bắt buộc"
+        },
+        "numberOrder": {
+          "required": "Thứ tự số là bắt buộc và khác 0"
+        }
+      }
     }
   },
   "Root": {
@@ -61,6 +80,10 @@
     },
     "VerifyRestore": {
       "label": "Xác thực khôi phục"
+    },
+    "Banner": {
+      "label": "Banners",
+      "detail": "Chi tiết banner"
     }
   },
   "Form": {
@@ -271,12 +294,44 @@
         "0": "Chưa kích hoạt",
         "1": "Đã kích hoạt"
       }
+    },
+    "BannerCreate": {
+      "label": {
+        "description": "Mô tả",
+        "startDate": "Ngày bắt đầu",
+        "endDate": "Ngày kết thúc",
+        "numberOrder": "Vị trí",
+        "dateRange": "Ngày bắt đầu - kết thúc"
+      },
+      "placeholder": {
+        "description": "Nhập mô tả của bạn",
+        "startDate": "Nhập ngày bắt đầu",
+        "endDate": "Nhập ngày kết thúc",
+        "numberOrder": "Nhập vị trí",
+        "selectDateRange": "Chọn ngày bắt đầu - kết thúc",
+        "uploadImage": "Tải ảnh lên",
+        "uploadImageSubtext": "Kéo và thả ảnh của bạn vào đây",
+        "uploadImageNote": "Hỗ trợ ảnh lên đến"
+      },
+      "button": {
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "create": "Tạo Banner"
+      },
+      "title": {
+        "edit": "Chỉnh sửa Banner",
+        "create": "Tạo Banner"
+      }
     }
   },
   "Button": {
     "DropdownMenu": {
       "Option": {
         "tooltip": "Tùy chọn"
+      },
+      "BannerFilter": {
+        "tooltip": "Bộ lọc biểu ngữ",
+        "all": "Tất cả Banner"
       }
     },
     "ModeToggle": {
@@ -302,12 +357,19 @@
       },
       "account": {
         "label": "Tài khoản"
+      },
+      "banners": {
+        "label": "Banners"
       }
     },
     "BaseDropBox": {
       "changePassword": {
         "label": "Đổi mật khẩu",
         "description": "Thay đổi mật khẩu của bạn tại đây"
+      },
+      "uploadAvatar": {
+        "label": "Avatar",
+        "description": "Avatar của bạn"
       }
     },
     "UserProfile": {
@@ -392,6 +454,56 @@
     "Input": {
       "Search": {
         "placeholder": "Tìm kiếm..."
+      },
+      "Avatar": {
+        "title1": "Tải lên Avatar",
+        "title2": "Cắt ảnh đại diện",
+        "cancel": "Hủy",
+        "save": "Lưu",
+        "description1": "Thả hình ảnh ở đây",
+        "description2": "Kéo và thả hình ảnh của bạn ở đây",
+        "description3": "hoặc nhấp để duyệt"
+      }
+    },
+    "Banners": {
+      "titleListBanners": "Quản lý banner",
+      "title": "Chi tiết banner",
+      "fields": {
+        "id": "ID",
+        "url": "Banner",
+        "descriptions": "Mô tả",
+        "startDate": "Ngày bắt đầu",
+        "endDate": "Ngày kết thúc",
+        "numberOrder": "Vị trí"
+      },
+      "actions": {
+        "copyId": "Sao chép ID",
+        "edit": "Chỉnh sửa",
+        "detail": "Chi tiết",
+        "delete": "Xoá",
+        "dialogs": {
+          "edit": {
+            "title": "Chỉnh sửa thông tin banner",
+            "cancel": "Hủy",
+            "save": "Lưu"
+          },
+          "delete": {
+            "title": "Xóa banner"
+          }
+        }
+      }
+    },
+    "Buttons": {
+      "add": "Thêm",
+      "cancel": "Huỷ",
+      "save": "Lưu",
+      "delete": "Xoá",
+      "showLess": "Ẩn nội dung",
+      "showMore": "Xem thêm"
+    },
+    "DatePicker": {
+      "DateRangePicker": {
+        "placeholder": "Chọn phạm vi ngày"
       }
     }
   },
@@ -432,7 +544,31 @@
         "3012": "Đăng nhập thành công",
         "3013": "Đăng ký thành công",
         "3014": "Vui lòng cung cấp mật khẩu",
-        "3016": "Đăng ký không thành công"
+        "3016": "Đăng ký không thành công",
+        "3017": "Thiếu tiêu đề ủy quyền",
+        "3018": "Mã thông báo bị thiếu",
+        "3019": "Mã thông báo đã hết hạn",
+        "4000": "Xác thực không thành công",
+        "4001": "Lỗi xác thực không xác định",
+        "5000": "Lỗi tải tệp lên",
+        "5001": "Không tìm thấy tệp đính kèm",
+        "5002": "Không tìm thấy blob",
+        "5003": "Lỗi xóa tệp",
+        "5004": "Xóa tệp thành công",
+        "5005": "Không tìm thấy tệp trên đĩa",
+        "5006": "Chỉ cho phép tệp hình ảnh, PDF, Word, Excel và văn bản!",
+        "6000": "Không tìm thấy phương tiện",
+        "7000": "Ngày bắt đầu phải nhỏ hơn ngày kết thúc",
+        "7001": "Ngày biểu ngữ đã diễn ra"
+      },
+      "file": {
+        "preview": "Không tìm thấy object URL cho preview",
+        "revoke": "Không tìm thấy object URL",
+        "upload": "Hỗ trợ hình ảnh, PDF và tài liệu lên đến",
+        "note": "Tải lên tối đa",
+        "files": "tệp",
+        "notification": "các tập tin đã chọn",
+        "more": "được phép thêm"
       }
     }
   },

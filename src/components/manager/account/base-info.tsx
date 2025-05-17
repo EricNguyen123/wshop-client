@@ -30,7 +30,7 @@ export default function BaseInfo({ userId }: { userId?: string }) {
   const [loginInfo, setLoginInfo] = useState<{ name: string; content: string | React.ReactNode }[]>(
     []
   );
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     let isMounted = true;

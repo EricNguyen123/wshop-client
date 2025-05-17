@@ -43,6 +43,15 @@ export const MESSAGES = {
         },
       },
     },
+    BANNER: {
+      CREATE: {
+        URL: { REQUIRED: 'banner.create.url.required' },
+        DESCRIPTIONS: { REQUIRED: 'banner.create.descriptions.required' },
+        START_DATE: { REQUIRED: 'banner.create.startDate.required' },
+        END_DATE: { REQUIRED: 'banner.create.endDate.required' },
+        NUMBER_ORDER: { REQUIRED: 'banner.create.numberOrder.required' },
+      },
+    },
   },
 };
 

@@ -10,6 +10,8 @@ export interface IProps {
 export interface ITooltipProps {
   children: ReactNode;
   nameTooltip?: string;
+  delayDuration?: number;
+  disabled?: boolean;
 }
 
 export interface IBaseResponse {

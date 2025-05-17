@@ -7,11 +7,11 @@ import {
   IGetDetailUserResponse,
   IGetListUsersResponse,
   IUpdateUserResponse,
+  IUploadAvatarResponse,
   IUserState,
 } from '@/types/common';
 import { TStatusSlice } from '@/types';
 import { RootState } from '@/lib/store/store';
-import { stat } from 'fs';
 import { query } from '@/constant/common';
 
 const initialState: IUserState = {
@@ -96,6 +96,25 @@ export const userSlice = createSlice({
       state.status = 'idle';
     },
 
+    uploadAvatarSuccess: (state, action: PayloadAction<IUploadAvatarResponse>) => {
+      state.account =
+        state.account?.id === action.payload.data.userId
+          ? {
+              ...state.account,
+              avatarUrl: action.payload.data.avatarUrl,
+            }
+          : state.account;
+      state.status = 'idle';
+    },
+
+    deleteAvatarSuccess: (state) => {
+      state.account = {
+        ...state.account,
+        avatarUrl: undefined,
+      };
+      state.status = 'idle';
+    },
+
     setStatus: (state, action: PayloadAction<TStatusSlice>) => {
       state.status = action.payload;
     },
@@ -110,6 +129,8 @@ export const {
   getListUsersSuccess,
   createUserSuccess,
   deleteUserSuccess,
+  uploadAvatarSuccess,
+  deleteAvatarSuccess,
 } = userSlice.actions;
 
 export const selectAccount = (state: RootState) => state.user.account;

@@ -4,7 +4,7 @@ import React from 'react';
 
 export async function generateMetadata({ params }: Omit<IProps, 'children'>) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'BaseLayout.User' });
+  const t = await getTranslations({ locale, namespace: 'BaseLayout.Banner' });
 
   return {
     title: t('label'),

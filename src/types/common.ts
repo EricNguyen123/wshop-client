@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { StatusEnum, ValidRolesEnum } from '@/common/enum';
 import { IBaseGetListResponse, IBaseResponse, TStatusSlice } from '.';
+import { DropzoneOptions } from 'react-dropzone';
 
 //#region interfaces
 
@@ -45,6 +46,7 @@ export interface IUserRes {
   building?: string;
   currentSignInAt?: Date;
   lastSignInAt?: Date;
+  avatarUrl?: string;
 }
 
 export interface IRegister {
@@ -259,8 +261,240 @@ export interface ICreateUser {
   currentSignInAt?: Date;
   lastSignInAt?: Date;
 }
+
+export interface IUploadAvatarResponse extends IBaseResponse {
+  data: IUploadAvatarRes;
+}
+
+export interface IUploadAvatarReq {
+  value: {
+    file: File;
+    userId: string;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IUploadAvatarRes {
+  id: string;
+  avatarUrl: string;
+  userId: string;
+}
+
+export interface IBannerState {
+  detail: IBannerRes | undefined;
+  banners: IGetListBannersRes | undefined;
+  status: TStatusSlice;
+}
+
+export interface IBannerRes {
+  id?: string;
+  descriptions?: string;
+  url?: string;
+  startDate?: string;
+  endDate?: string;
+  numberOrder?: number;
+}
+
+export interface IGetListBannersRes extends IBaseGetListResponse {
+  data: IBannerRes[];
+}
+
+export interface IGetListBannersResponse extends IBaseResponse {
+  data: IGetListBannersRes;
+}
+
+export interface IGetListBannersParams extends IGetListReq {
+  startDate?: string;
+  endDate?: string;
+}
+
+export interface IGetListBannersReq {
+  value: IGetListBannersParams;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface ICreateBannerResponse extends IBaseResponse {
+  data: IBannerRes;
+}
+
+export interface IUpdateBannerResponse extends IBaseResponse {
+  data: IBannerRes;
+}
+
+export interface IUploadBannerReq {
+  value: {
+    file: File;
+    descriptions: string;
+    startDate: string;
+    endDate: string;
+    numberOrder: number;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IUpdateBanner {
+  descriptions?: string;
+  startDate?: string;
+  endDate?: string;
+  numberOrder?: number;
+}
+
+export interface IUpdateBannerReq {
+  value: {
+    descriptions?: string;
+    startDate?: string;
+    endDate?: string;
+    numberOrder?: number;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IDeleteBannerReq {
+  value: {
+    bannerId: string;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IGetDetailBannerResponse extends IBaseResponse {
+  data: IBannerRes;
+}
+
+export interface IGetDetailBannerReq {
+  value: {
+    bannerId: string;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
 //#endregion interfaces
 
 //#region types
 
 //#endregion types
+
+//#region files
+export interface FileWithPreview {
+  name: string;
+  size: number;
+  type: string;
+  lastModified: number;
+  slice?: (start?: number, end?: number, contentType?: string) => Blob;
+  stream?: () => ReadableStream;
+  text?: () => Promise<string>;
+  arrayBuffer?: () => Promise<ArrayBuffer>;
+  preview?: string;
+  progress?: number;
+  id: string;
+  error?: string;
+}
+
+export interface FileUploadProps {
+  value?: FileWithPreview[];
+  onChange?: (files: FileWithPreview[]) => void;
+  onRemove?: (file: FileWithPreview) => void;
+  disabled?: boolean;
+  maxFiles?: number;
+  maxSize?: number;
+  accept?: Record<string, string[]>;
+  className?: string;
+  showPreview?: boolean;
+  simulateProgress?: boolean;
+  dropzoneOptions?: Partial<DropzoneOptions>;
+  previewType?: 'grid' | 'list';
+  showFileInfo?: boolean;
+  allowReplacement?: boolean;
+  uploadText?: string;
+  uploadSubText?: string;
+  uploadNoteText?: string;
+}
+
+export interface FilePreviewProps {
+  file: FileWithPreview;
+  onRemove: () => void;
+  showFileInfo?: boolean;
+}
+
+export interface FileListProps {
+  files: FileWithPreview[];
+  onRemove: (file: FileWithPreview) => void;
+  type?: 'grid' | 'list';
+  showFileInfo?: boolean;
+}
+
+export interface RejectedListProps {
+  rejected: any[];
+  onRemove: (index: number) => void;
+}
+//#endregion files
+
+//#region avatar
+export interface AvatarUploadProps {
+  value?: string | null;
+  /**
+   * Callback when avatar changes
+   * @param url The new avatar URL (blob URL) or null if removed
+   * @param file The new avatar file or null if removed
+   */
+  onChange?: (url: string | null, file: File | null) => void;
+  className?: string;
+  /**
+   * Size of the avatar
+   * @default "lg"
+   */
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  /**
+   * Whether the avatar upload is disabled
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * Maximum file size in bytes
+   * @default 5242880 (5MB)
+   */
+  maxSize?: number;
+  /**
+   * Aspect ratio for cropping
+   * @default 1 (square)
+   */
+  aspectRatio?: number;
+  /**
+   * Whether to show the remove button
+   * @default true
+   */
+  showRemoveButton?: boolean;
+  placeholder?: string;
+  /**
+   * Alt text for the avatar
+   * @default "Avatar"
+   */
+  alt?: string;
+  onError?: (error: string) => void;
+}
+
+export interface AvatarPreviewProps {
+  src: string | null;
+  placeholder?: string;
+  alt?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  isHovering?: boolean;
+}
+
+export interface AvatarDropzoneProps {
+  onFileSelected: (file: File) => void;
+  maxSize?: number;
+  className?: string;
+}
+
+export interface AvatarCropProps {
+  file: File;
+  onCrop: (blob: Blob) => void;
+  aspectRatio?: number;
+}
+
+//#endregion avatar

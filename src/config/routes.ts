@@ -10,6 +10,7 @@ const routes = {
   private: {
     account: '/manager/account',
     users: '/manager/users',
+    banners: '/manager/banners',
   },
   protected: {
     google: '/auth/google/login',

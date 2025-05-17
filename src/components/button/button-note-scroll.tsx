@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 import { ChevronDown } from 'lucide-react';
 
 const ScrollNoteButton: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const containerRef = useRef<HTMLElement | null>(null);
 
   const scrollDown = () => {
@@ -52,18 +52,18 @@ const ScrollNoteButton: React.FC = () => {
     };
   }, []);
 
-  if (!isVisible) return null;
-
   return (
     <Button
       onClick={scrollDown}
-      className='w-9 h-max fixed right-6 top-4/5 transform -translate-y-1/2 
+      variant={'outline'}
+      className={`w-9 h-max fixed right-6 top-4/5 transform -translate-y-1/2 
       flex flex-col items-center gap-2 !p-3 cursor-pointer
-      bg-white text-slate-800 dark:bg-slate-800 dark:text-white
       shadow-lg hover:shadow-xl transition-all duration-300
       hover:bg-rose-500 hover:text-white
-      border border-slate-200 dark:border-slate-700
-       backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80 rounded-full '
+      border border-transparent 
+       backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80 rounded-full ${
+         isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+       }`}
       aria-label='Scroll down for more content'
     >
       <span className='text-xs font-medium [writing-mode:vertical-rl] rotate-180'>

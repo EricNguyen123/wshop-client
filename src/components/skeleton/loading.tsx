@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 import React from 'react';
 
-type LoadingProps = { loading?: boolean; className?: string };
+export type LoadingProps = { loading?: boolean; className?: string };
 
 export default function Loading({ loading = false, className }: LoadingProps) {
   return (

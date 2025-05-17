@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { columnsKey } from '@/constant/common';
+import { formatColumnName } from '@/utils/common';
 import type { Table } from '@tanstack/react-table';
 
 import { Columns, ChevronDown } from 'lucide-react';
@@ -58,7 +59,7 @@ export function SelectColumns<TData>({ table }: SelectColumnsProps<TData>) {
                 checked={column.getIsVisible()}
                 onCheckedChange={(value) => column.toggleVisibility(!!value)}
               >
-                {column.id}
+                {formatColumnName(column.id)}
               </DropdownMenuCheckboxItem>
             );
           })}

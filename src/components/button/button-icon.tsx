@@ -24,14 +24,15 @@ interface IconButtonProps
     VariantProps<typeof iconVariants> {
   icon: React.ElementType;
   iconClassName?: string;
+  variant?: 'ghost' | 'outline' | 'default';
 }
 
 export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-  ({ className, icon: Icon, iconClassName, size, ...props }, ref) => {
+  ({ className, icon: Icon, iconClassName, size, variant, ...props }, ref) => {
     return (
       <Button
         ref={ref}
-        variant='ghost'
+        variant={variant || 'ghost'}
         size='icon'
         className={cn(buttonVariants(), className)}
         {...props}

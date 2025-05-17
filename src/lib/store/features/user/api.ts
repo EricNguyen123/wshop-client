@@ -40,3 +40,19 @@ export const deleteUserApi = async (payload: { userId: string }) => {
   const result = await apiReq.delete(`/users/${userId}`);
   return result.data;
 };
+
+export const uploadAvatarApi = async (payload: { data: FormData }) => {
+  const { data } = payload;
+  const result = await apiReq.post(`/users/upload-avatar`, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return result.data;
+};
+
+export const deleteAvatarApi = async (payload: { userId: string }) => {
+  const { userId } = payload;
+  const result = await apiReq.delete(`/users/upload-avatar/${userId}`);
+  return result.data;
+};
