@@ -50,6 +50,31 @@
           "required": "Number must be greater than 0"
         }
       }
+    },
+    "product": {
+      "create": {
+        "name": {
+          "required": "Name is required"
+        },
+        "code": {
+          "required": "Code is required"
+        },
+        "price": {
+          "required": "Price is required"
+        },
+        "quantity": {
+          "required": "Quantity is required"
+        },
+        "quantityAlert": {
+          "required": "Quantity alert is required"
+        },
+        "orderUnit": {
+          "required": "Order unit is required"
+        },
+        "multiplicationRate": {
+          "required": "Multiplication rate is required"
+        }
+      }
     }
   },
   "Root": {
@@ -84,6 +109,10 @@
     "Banner": {
       "label": "Banners",
       "detail": "Detail Banner"
+    },
+    "Product": {
+      "label": "Products",
+      "detail": "Detail Product"
     }
   },
   "Form": {
@@ -322,6 +351,53 @@
         "edit": "Edit Banner",
         "create": "Create Banner"
       }
+    },
+    "ProductCreate": {
+      "label": {
+        "name": "Name",
+        "code": "Code",
+        "price": "Price",
+        "quantity": "Quantity",
+        "quantityAlert": "Quantity Alert",
+        "orderUnit": "Order Unit",
+        "description": "Description",
+        "multiplicationRate": "Multiplication Rate",
+        "discount": "Discount",
+        "status": "Status",
+        "media": "Media"
+      },
+      "placeholder": {
+        "name": "Enter your name",
+        "code": "Enter your code",
+        "price": "Enter your price",
+        "quantity": "Enter your quantity",
+        "quantityAlert": "Enter your quantity alert",
+        "orderUnit": "Enter your order unit",
+        "description": "Enter your description",
+        "multiplicationRate": "Enter your multiplication rate",
+        "discount": "Enter your discount",
+        "status": "Select Status",
+        "uploadImage": "Upload Image",
+        "uploadImageSubtext": "Drag and drop your image here",
+        "uploadImageNote": "Supports images up to"
+      },
+      "button": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "create": "Create Product"
+      },
+      "title": {
+        "edit": "Edit Product",
+        "create": "Create Product"
+      },
+      "status": {
+        "0": "Draft",
+        "1": "Pending",
+        "2": "Active",
+        "3": "Inactive",
+        "4": "Out of stock",
+        "5": "Discontinued"
+      }
     }
   },
   "Button": {
@@ -332,6 +408,25 @@
       "BannerFilter": {
         "tooltip": "Banner Filter",
         "all": "All Banner"
+      },
+      "ProductFilter": {
+        "tooltip": "Product Filter",
+        "all": "All Product",
+        "title": {
+          "status": "Status"
+        },
+        "label": {
+          "status": "Select Status"
+        },
+        "status": {
+          "0": "Draft",
+          "1": "Pending",
+          "2": "Active",
+          "3": "Inactive",
+          "4": "Out of stock",
+          "5": "Discontinued",
+          "all": "All Status"
+        }
       }
     },
     "ModeToggle": {
@@ -360,6 +455,9 @@
       },
       "banners": {
         "label": "Banners"
+      },
+      "products": {
+        "label": "Products"
       }
     },
     "BaseDropBox": {
@@ -508,6 +606,46 @@
       "DateRangePicker": {
         "placeholder": "Select date range"
       }
+    },
+    "Products": {
+      "titleListProducts": "Manage Products",
+      "title": "Detail Product",
+      "fields": {
+        "id": "ID",
+        "name": "Name",
+        "code": "Code",
+        "price": "Price",
+        "quantity": "Quantity",
+        "quantityAlert": "Quantity Alert",
+        "orderUnit": "Order Unit",
+        "description": "Description",
+        "multiplicationRate": "Multiplication Rate",
+        "discount": "Discount",
+        "status": "Status",
+        "media": "Media"
+      },
+      "actions": {
+        "copyId": "Copy ID",
+        "edit": "Edit",
+        "detail": "Detail",
+        "delete": "Delete",
+        "dialogs": {
+          "edit": {
+            "title": "Edit Product",
+            "cancel": "Cancel",
+            "save": "Save"
+          },
+          "delete": {
+            "title": "Delete Product"
+          }
+        }
+      },
+      "sections": {
+        "productInfo": "Product Information"
+      },
+      "tooltip": {
+        "edit": "Edit Product"
+      }
     }
   },
   "Messages": {
@@ -528,6 +666,8 @@
         "1001": "Updated Successfully",
         "1002": "Deleted Successfully",
         "1003": "Get successfully",
+        "1004": "Send mail successfully",
+        "1005": "Email sending failed",
         "2000": "User not found",
         "2001": "Email existed",
         "2002": "User existed",

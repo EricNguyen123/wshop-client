@@ -26,3 +26,12 @@ export enum BusinessTypeOtpEnum {
   FORGOT_PASSWORD = 'FORGOT_PASSWORD',
   RESTORE = 'RESTORE',
 }
+
+export enum StatusProductEnum {
+  DRAFT = 0,
+  PENDING = 1,
+  ACTIVE = 2,
+  INACTIVE = 3,
+  OUT_OF_STOCK = 4,
+  DISCONTINUED = 5,
+}

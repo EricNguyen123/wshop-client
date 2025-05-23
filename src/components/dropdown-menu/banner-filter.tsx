@@ -22,7 +22,7 @@ export default function BannerFilter() {
           <IconButton icon={ListFilter} variant='outline' className='rounded-md' />
         </DropdownMenuTrigger>
       </BaseTooltip>
-      <DropdownMenuContent className='w-xs absolute -right-6'>
+      <DropdownMenuContent className='w-xs sm:absolute sm:-right-6'>
         <DropdownMenuGroup>
           <ItemBannerDateRange />
         </DropdownMenuGroup>

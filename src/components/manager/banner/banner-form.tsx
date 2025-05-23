@@ -26,7 +26,7 @@ import type { DateRange } from 'react-day-picker';
 import { FileUpload } from '@/components/input/file-upload/file-upload';
 import { bannerCreateSchema, bannerEditSchema } from '@/validations/banner/banner-schema';
 import { createBannerAsync, updateBannerAsync } from '@/lib/store/features/banner/thunk';
-import { convertFileWithPreviewToFile, toSQLDateTime } from '@/utils/common';
+import { convertFileWithPreviewToFile } from '@/utils/common';
 import DateRangePicker from '@/components/date-picker/date-range-picker';
 import { BannerImage } from './banner-image';
 
@@ -82,10 +82,10 @@ export default function BannerForm({
       form.setValue('endDate', dateRange.to);
     }
   }, [dateRange, form]);
-
+  console.log('file', file);
   function onSubmit(values: BannerFormValues) {
     setIsLoading(true);
-
+    console.log('values', values);
     if (uploadedFiles.length > 0) {
       values.url = uploadedFiles[0].preview || '';
     }
@@ -105,21 +105,15 @@ export default function BannerForm({
       case 'edit':
         if (bannerId) {
           const parsedValues = bannerEditSchema.parse(values);
-          console.log({
-            descriptions: parsedValues.descriptions,
-            startDate: parsedValues.startDate ? toSQLDateTime(parsedValues.startDate) : undefined,
-            endDate: parsedValues.endDate ? toSQLDateTime(parsedValues.endDate) : undefined,
-            numberOrder: parsedValues.numberOrder,
-          });
           dispatch(
             updateBannerAsync({
               data: {
                 value: {
                   descriptions: parsedValues.descriptions,
                   startDate: parsedValues.startDate
-                    ? toSQLDateTime(parsedValues.startDate)
+                    ? parsedValues.startDate.toISOString()
                     : undefined,
-                  endDate: parsedValues.endDate ? toSQLDateTime(parsedValues.endDate) : undefined,
+                  endDate: parsedValues.endDate ? parsedValues.endDate.toISOString() : undefined,
                   numberOrder: parsedValues.numberOrder,
                 },
                 ...callbacks,
@@ -137,8 +131,8 @@ export default function BannerForm({
               data: {
                 value: {
                   descriptions: parsedValues.descriptions,
-                  startDate: toSQLDateTime(parsedValues.startDate),
-                  endDate: toSQLDateTime(parsedValues.endDate),
+                  startDate: parsedValues.startDate.toISOString(),
+                  endDate: parsedValues.endDate.toISOString(),
                   numberOrder: parsedValues.numberOrder,
                   file,
                 },

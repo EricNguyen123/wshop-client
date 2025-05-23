@@ -70,6 +70,11 @@ export async function convertFileWithPreviewToFile(file: FileWithPreview): Promi
   return newFile;
 }
 
-export function toSQLDateTime(d: Date): string {
-  return d.toISOString().replace('T', ' ').substring(0, 19);
+export async function convertFilesWithPreviewToFiles(files: FileWithPreview[]): Promise<File[]> {
+  const convertedFiles: File[] = [];
+  for (const file of files) {
+    const convertedFile = await convertFileWithPreviewToFile(file);
+    convertedFiles.push(convertedFile);
+  }
+  return convertedFiles;
 }

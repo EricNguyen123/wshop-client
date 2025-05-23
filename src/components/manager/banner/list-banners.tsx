@@ -54,7 +54,7 @@ export default function ListBanners() {
       cell: ({ row }) => (
         <div className='w-full flex items-center justify-center'>
           {row.getValue('url') ? (
-            <div className='relative h-16 w-32 overflow-hidden rounded-md border border-border shadow-sm'>
+            <div className='relative h-18 w-32 overflow-hidden rounded-md border border-border shadow-sm'>
               <Image
                 src={row.getValue('url') || images.noImage}
                 alt={`Banner ${row.getValue('descriptions') || 'image'}`}
@@ -162,6 +162,7 @@ export default function ListBanners() {
             onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
           >
             {t('fields.numberOrder')}
+            <ArrowUpDown />
           </Button>
         );
       },

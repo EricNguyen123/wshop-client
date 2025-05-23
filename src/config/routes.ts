@@ -11,6 +11,7 @@ const routes = {
     account: '/manager/account',
     users: '/manager/users',
     banners: '/manager/banners',
+    products: '/manager/products',
   },
   protected: {
     google: '/auth/google/login',

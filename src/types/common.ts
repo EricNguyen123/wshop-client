@@ -202,6 +202,7 @@ export interface IGetListReq {
   page?: number;
   limit?: number;
   textSearch?: string;
+  [key: string]: string | number | undefined;
 }
 
 export interface IGetDetailUserReq {
@@ -368,6 +369,121 @@ export interface IGetDetailBannerResponse extends IBaseResponse {
 export interface IGetDetailBannerReq {
   value: {
     bannerId: string;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IProductState {
+  detail: IProductRes | undefined;
+  products: IGetListProductsRes | undefined;
+  status: TStatusSlice;
+}
+
+export interface IGetListProductsResponse extends IBaseResponse {
+  data: IGetListProductsRes;
+}
+
+export interface IGetListProductsRes extends IBaseGetListResponse {
+  data: IProductRes[];
+}
+
+export interface IProductRes extends IProduct {
+  medias?: IMedia[];
+}
+
+export interface IProduct {
+  id?: string;
+  name?: string;
+  code?: string;
+  price?: number;
+  quantity?: number;
+  quantityAlert?: number;
+  orderUnit?: number;
+  description?: string;
+  status?: number;
+  multiplicationRate?: number;
+  discount?: number;
+}
+
+export interface IMedia {
+  id?: string;
+  mediaUrl?: string;
+  fileName?: string;
+  fileSize?: number;
+}
+
+export interface ICreateProductResponse extends IBaseResponse {
+  data: {
+    product: IProduct;
+    medias: IMedia[];
+  };
+}
+
+export interface IGetListProductsReq {
+  value: IGetListReq;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface ICreateProductReq {
+  value: {
+    files: File[];
+    name?: string;
+    code?: string;
+    price?: number;
+    quantity?: number;
+    quantityAlert?: number;
+    orderUnit?: number;
+    description?: string;
+    status?: number;
+    multiplicationRate?: number;
+    discount?: number;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IUpdateProductResponse extends IBaseResponse {
+  data: IProductRes;
+}
+
+export interface IUpdateProduct {
+  name?: string;
+  code?: string;
+  price?: number;
+  quantity?: number;
+  quantityAlert?: number;
+  orderUnit?: number;
+  description?: string;
+  status?: number;
+  multiplicationRate?: number;
+  discount?: number;
+  mediaIds?: string[];
+  files?: File[];
+}
+
+export interface IUpdateProductReq {
+  value: IUpdateProduct;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IDeleteProductReq {
+  value: {
+    productId: string;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IGetDetailProductResponse extends IBaseResponse {
+  data: IProductRes;
+}
+
+export interface IGetDetailProductReq {
+  value: {
+    productId: string;
   };
   setToastSuccess: (status?: number) => void;
   setToastError: (status?: number) => void;

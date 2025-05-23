@@ -3,11 +3,12 @@
 import { useEffect, useState } from 'react';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
-import { StatusEnum } from '@/common/enum';
-import { useAppDispatch } from '@/lib/store/hooks';
+import { StatusEnum, ValidRolesEnum } from '@/common/enum';
+import { useAppDispatch, useAppSelector } from '@/lib/store/hooks';
 import { updateUserAsync } from '@/lib/store/features/user/thunk';
 import { showErrorToast, showSuccessToast } from '@/components/toast/custom-toast';
 import { useTranslations } from 'next-intl';
+import { selectCurrentAccount } from '@/lib/store/features/auth/slice';
 
 const RenderStatus = ({
   inStatus,
@@ -21,6 +22,12 @@ const RenderStatus = ({
   const [status, setStatus] = useState(inStatus);
   const dispatch = useAppDispatch();
   const tMessage = useTranslations('Messages.error');
+  const selectCurrent = useAppSelector(selectCurrentAccount);
+  const [currentAccount, setCurrentAccount] = useState(selectCurrent?.user);
+
+  useEffect(() => {
+    setCurrentAccount(selectCurrent?.user);
+  }, [selectCurrent]);
 
   const toggleStatus = () => {
     const newStatus = status === StatusEnum.NOT_ACTIVE ? StatusEnum.ACTIVE : StatusEnum.NOT_ACTIVE;
@@ -68,11 +75,15 @@ const RenderStatus = ({
           {statusText}
         </Badge>
 
-        <Switch
-          checked={isActive}
-          onCheckedChange={toggleStatus}
-          className='data-[state=checked]:bg-green-500 data-[state=checked]:text-green-foreground'
-        />
+        {[ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR].includes(
+          currentAccount?.role ?? ValidRolesEnum.USER
+        ) && (
+          <Switch
+            checked={isActive}
+            onCheckedChange={toggleStatus}
+            className='data-[state=checked]:bg-green-500 data-[state=checked]:text-green-foreground'
+          />
+        )}
       </div>
     </div>
   );

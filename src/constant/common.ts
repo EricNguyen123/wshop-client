@@ -46,3 +46,19 @@ export const columnsKeyBanner = {
   numberOrder: 'numberOrder',
   actions: 'actions',
 };
+
+export const columnsKeyProduct = {
+  select: 'select',
+  medias: 'medias',
+  name: 'name',
+  code: 'code',
+  price: 'price',
+  quantity: 'quantity',
+  quantityAlert: 'quantityAlert',
+  orderUnit: 'orderUnit',
+  description: 'description',
+  status: 'status',
+  multiplicationRate: 'multiplicationRate',
+  discount: 'discount',
+  actions: 'actions',
+};

@@ -1,16 +1,7 @@
-import config from '@/config';
 import { EMPTY_STRING } from '@/constant';
-import { useTranslations } from 'next-intl';
 
-export const useCurrentTitle = (pathname: string): string => {
-  const t = useTranslations('Component.BaseSidebar');
-
-  const pathToTitle: Record<string, string> = {
-    [config.routes.private.users]: t('users.label'),
-    [config.routes.private.account]: t('account.label'),
-  };
-
-  if (pathToTitle[pathname]) {
+export const useCurrentTitle = (pathname: string, pathToTitle?: Record<string, string>): string => {
+  if (pathToTitle && pathToTitle[pathname]) {
     return pathToTitle[pathname];
   }
 
@@ -18,7 +9,7 @@ export const useCurrentTitle = (pathname: string): string => {
 
   while (pathSegments.length > 0) {
     const testPath = '/' + pathSegments.join('/');
-    if (pathToTitle[testPath]) {
+    if (pathToTitle && pathToTitle[testPath]) {
       return pathToTitle[testPath];
     }
     pathSegments.pop();

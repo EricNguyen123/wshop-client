@@ -52,6 +52,17 @@ export const MESSAGES = {
         NUMBER_ORDER: { REQUIRED: 'banner.create.numberOrder.required' },
       },
     },
+    PRODUCT: {
+      CREATE: {
+        NAME: { REQUIRED: 'product.create.name.required' },
+        CODE: { REQUIRED: 'product.create.code.required' },
+        PRICE: { REQUIRED: 'product.create.price.required' },
+        QUANTITY: { REQUIRED: 'product.create.quantity.required' },
+        QUANTITY_ALERT: { REQUIRED: 'product.create.quantityAlert.required' },
+        ORDER_UNIT: { REQUIRED: 'product.create.orderUnit.required' },
+        MULTIPLICATION_RATE: { REQUIRED: 'product.create.multiplicationRate.required' },
+      },
+    },
   },
 };
 

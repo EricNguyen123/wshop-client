@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -71,6 +71,13 @@ export function ActionButton<T = unknown>({
   }>({
     open: false,
   });
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    if (dialogState.open) {
+      setDropdownOpen(false);
+    }
+  }, [dialogState.open]);
 
   const handleOptionClick = (option: ActionOption<T>) => {
     if (option.dialog) {
@@ -89,6 +96,8 @@ export function ActionButton<T = unknown>({
     if (onOptionSelect && option.data !== undefined) {
       onOptionSelect(option.data);
     }
+
+    setDropdownOpen(false);
   };
 
   const closeDialog = () => {
@@ -160,7 +169,7 @@ export function ActionButton<T = unknown>({
 
   return (
     <>
-      <DropdownMenu>
+      <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
         <DropdownMenuTrigger asChild className='relative'>
           {tooltip ? (
             <TooltipProvider>
@@ -185,6 +194,9 @@ export function ActionButton<T = unknown>({
                           className={cn('gap-2 cursor-pointer', option.className)}
                           onClick={() => handleOptionClick(option)}
                           disabled={option.disabled}
+                          onSelect={(e) => {
+                            e.preventDefault();
+                          }}
                         >
                           {option.icon}
                           <span>{option.content}</span>
@@ -198,6 +210,9 @@ export function ActionButton<T = unknown>({
                     className={cn('gap-2 cursor-pointer', option.className)}
                     onClick={() => handleOptionClick(option)}
                     disabled={option.disabled}
+                    onSelect={(e) => {
+                      e.preventDefault();
+                    }}
                   >
                     {option.icon}
                     <span>{option.content}</span>
@@ -211,7 +226,12 @@ export function ActionButton<T = unknown>({
 
       <Dialog
         open={dialogState.open}
-        onOpenChange={(open) => setDialogState((prev) => ({ ...prev, open }))}
+        onOpenChange={(open) => {
+          if (open && dropdownOpen) {
+            setDropdownOpen(false);
+          }
+          setDialogState((prev) => ({ ...prev, open }));
+        }}
       >
         <DialogContent>
           {dialogState.title && (

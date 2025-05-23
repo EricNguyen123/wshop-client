@@ -40,5 +40,5 @@ export default function BasePage({ children }: { children: React.ReactNode }) {
       routes.push(config.routes.public.home);
     }
   }, [tokenFromUrl]);
-  return <div>{children}</div>;
+  return <div className='w-full'>{children}</div>;
 }

@@ -50,6 +50,31 @@
           "required": "Thứ tự số là bắt buộc và khác 0"
         }
       }
+    },
+    "product": {
+      "create": {
+        "name": {
+          "required": "Tên là bắt buộc"
+        },
+        "code": {
+          "required": "Mã là bắt buộc"
+        },
+        "price": {
+          "required": "Giá là bắt buộc"
+        },
+        "quantity": {
+          "required": "Số lượng là bắt buộc"
+        },
+        "quantityAlert": {
+          "required": "Cảnh báo số lượng là bắt buộc"
+        },
+        "orderUnit": {
+          "required": "Đơn vị đặt hàng là bắt buộc"
+        },
+        "multiplicationRate": {
+          "required": "Tỷ lệ nhân là bắt buộc"
+        }
+      }
     }
   },
   "Root": {
@@ -84,6 +109,10 @@
     "Banner": {
       "label": "Banners",
       "detail": "Chi tiết banner"
+    },
+    "Product": {
+      "label": "Sản phẩm",
+      "detail": "Chi tiết sản phẩm"
     }
   },
   "Form": {
@@ -322,6 +351,53 @@
         "edit": "Chỉnh sửa Banner",
         "create": "Tạo Banner"
       }
+    },
+    "ProductCreate": {
+      "label": {
+        "name": "Tên",
+        "code": "Mã",
+        "price": "Giá",
+        "quantity": "Số lượng",
+        "quantityAlert": "Cảnh báo số lượng",
+        "orderUnit": "Đơn vị đặt hàng",
+        "description": "Mô tả",
+        "multiplicationRate": "Tỷ lệ nhân",
+        "discount": "Giảm giá",
+        "status": "Trạng thái",
+        "media": "Phương tiện"
+      },
+      "placeholder": {
+        "name": "Nhập tên của bạn",
+        "code": "Nhập mã của bạn",
+        "price": "Nhập giá của bạn",
+        "quantity": "Nhập số lượng của bạn",
+        "quantityAlert": "Nhập cảnh báo số lượng của bạn",
+        "orderUnit": "Nhập đơn vị đặt hàng của bạn",
+        "description": "Nhập mô tả của bạn",
+        "multiplicationRate": "Nhập tỷ lệ nhân của bạn",
+        "discount": "Nhập mức giảm giá của bạn",
+        "status": "Chọn trạng thái",
+        "uploadImage": "Tải ảnh lên",
+        "uploadImageSubtext": "Kéo và thả ảnh của bạn vào đây",
+        "uploadImageNote": "Hỗ trợ ảnh lên đến"
+      },
+      "button": {
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "create": "Tạo sản phẩm"
+      },
+      "title": {
+        "edit": "Chỉnh sửa sản phẩm",
+        "create": "Tạo sản phẩm"
+      },
+      "status": {
+        "0": "Bản nháp",
+        "1": "Đang chờ",
+        "2": "Đang hoạt động",
+        "3": "Không hoạt động",
+        "4": "Hết hàng",
+        "5": "Ngưng sản xuất"
+      }
     }
   },
   "Button": {
@@ -332,6 +408,25 @@
       "BannerFilter": {
         "tooltip": "Bộ lọc biểu ngữ",
         "all": "Tất cả Banner"
+      },
+      "ProductFilter": {
+        "tooltip": "Bộ lọc sản phẩm",
+        "all": "Tất cả sản phẩm",
+        "title": {
+          "status": "Trạng thái"
+        },
+        "label": {
+          "status": "Chọn trạng thái"
+        },
+        "status": {
+          "0": "Bản nháp",
+          "1": "Đang chờ",
+          "2": "Đang hoạt động",
+          "3": "Không hoạt động",
+          "4": "Hết hàng",
+          "5": "Ngưng sản xuất",
+          "all": "Tất cả trạng thái"
+        }
       }
     },
     "ModeToggle": {
@@ -360,6 +455,9 @@
       },
       "banners": {
         "label": "Banners"
+      },
+      "products": {
+        "label": "Sản phẩm"
       }
     },
     "BaseDropBox": {
@@ -505,6 +603,46 @@
       "DateRangePicker": {
         "placeholder": "Chọn phạm vi ngày"
       }
+    },
+    "Products": {
+      "titleListProducts": "Quản lý sản phẩm",
+      "title": "Chi tiết sản phẩm",
+      "fields": {
+        "id": "ID",
+        "name": "Tên",
+        "code": "Mã",
+        "price": "Giá",
+        "quantity": "Số lượng",
+        "quantityAlert": "Cảnh báo số lượng",
+        "orderUnit": "Đơn vị đặt hàng",
+        "description": "Mô tả",
+        "multiplicationRate": "Tỷ lệ nhân",
+        "discount": "Giảm giá",
+        "status": "Trạng thái",
+        "media": "Phương tiện"
+      },
+      "actions": {
+        "copyId": "Sao chép ID",
+        "edit": "Chỉnh sửa",
+        "detail": "Chi tiết",
+        "delete": "Xóa",
+        "dialogs": {
+          "edit": {
+            "title": "Chỉnh sửa sản phẩm",
+            "cancel": "Hủy",
+            "save": "Lưu"
+          },
+          "delete": {
+            "title": "Xóa sản phẩm"
+          }
+        }
+      },
+      "sections": {
+        "productInfo": "Thông tin sản phẩm"
+      },
+      "tooltip": {
+        "edit": "Chỉnh sửa sản phẩm"
+      }
     }
   },
   "Messages": {
@@ -525,6 +663,8 @@
         "1001": "Cập nhật thành công",
         "1002": "Xoá thành công",
         "1003": "Lấy thông tin thành công",
+        "1004": "Gửi thư thành công",
+        "1005": "Gửi email không thành công",
         "2000": "Không tìm thấy người dùng",
         "2002": "Người dùng đã tồn tại",
         "2003": "Cập nhật người dùng không thành công",

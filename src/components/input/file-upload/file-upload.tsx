@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { FileList } from './file-list';
 import { RejectedList } from './rejected-list';
-import { FileUploadProps, FileWithPreview } from '@/types/common';
+import type { FileUploadProps, FileWithPreview } from '@/types/common';
 import { formatFileSize } from '@/utils/common';
 import { showErrorToast } from '@/components/toast/custom-toast';
 import { useTranslations } from 'next-intl';
@@ -41,19 +41,25 @@ export function FileUpload({
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const [rejected, setRejected] = useState<any[]>([]);
   const progressIntervalsRef = useRef<NodeJS.Timeout[]>([]);
-  const isInitialMount = useRef(true);
   const tMessage = useTranslations('Messages.error');
 
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
+  const isValueUpdate = useRef(false);
 
+  useEffect(() => {
+    const valueIds = new Set(value.map((file) => file.id));
+    const fileIds = new Set(files.map((file) => file.id));
+
+    const isDifferent =
+      valueIds.size !== fileIds.size || value.some((file) => !fileIds.has(file.id));
+
+    if (isDifferent) {
+      isValueUpdate.current = true;
       const initialFiles = value.map((file) => {
         return {
           ...file,
           name: file.name || `File-${crypto.randomUUID().slice(0, 8)}`,
           id: file.id || crypto.randomUUID(),
-          preview: file.preview,
+          preview: file.preview || undefined,
           progress: file.progress || 100,
           size: file.size || 0,
           type: file.type || '',
@@ -162,9 +168,11 @@ export function FileUpload({
   );
 
   useEffect(() => {
-    if (!isInitialMount.current) {
+    if (files.length >= 0 && !isValueUpdate.current) {
       onChange?.(files);
     }
+
+    isValueUpdate.current = false;
   }, [files, onChange]);
 
   const { getRootProps, getInputProps, isDragActive, isDragReject, isDragAccept } = useDropzone({
