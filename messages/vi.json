@@ -75,6 +75,13 @@
           "required": "Tỷ lệ nhân là bắt buộc"
         }
       }
+    },
+    "category": {
+      "create": {
+        "name": {
+          "required": "Tên danh mục là bắt buộc"
+        }
+      }
     }
   },
   "Root": {
@@ -113,6 +120,12 @@
     "Product": {
       "label": "Sản phẩm",
       "detail": "Chi tiết sản phẩm"
+    },
+    "Category": {
+      "label": "Danh mục",
+      "detail": "Chi tiết danh mục",
+      "applyProduct": "Áp dụng cho danh mục",
+      "unknownCategory": "Không tìm thấy danh mục nào"
     }
   },
   "Form": {
@@ -364,7 +377,10 @@
         "multiplicationRate": "Tỷ lệ nhân",
         "discount": "Giảm giá",
         "status": "Trạng thái",
-        "media": "Phương tiện"
+        "media": "Phương tiện",
+        "categoryIds": "Danh mục",
+        "organization": "Tổ chức",
+        "info": "Thông tin sản phẩm"
       },
       "placeholder": {
         "name": "Nhập tên của bạn",
@@ -379,7 +395,9 @@
         "status": "Chọn trạng thái",
         "uploadImage": "Tải ảnh lên",
         "uploadImageSubtext": "Kéo và thả ảnh của bạn vào đây",
-        "uploadImageNote": "Hỗ trợ ảnh lên đến"
+        "uploadImageNote": "Hỗ trợ ảnh lên đến",
+        "categoryIds": "Chọn danh mục",
+        "searchCategoryIds": "Tìm kiếm danh mục"
       },
       "button": {
         "save": "Lưu",
@@ -397,6 +415,55 @@
         "3": "Không hoạt động",
         "4": "Hết hàng",
         "5": "Ngưng sản xuất"
+      },
+      "messages": {
+        "noCategoryFound": "Không tìm thấy danh mục nào"
+      }
+    },
+    "CategoryCreate": {
+      "label": {
+        "name": "Tên danh mục",
+        "parentCategoryId": "Danh mục cha",
+        "subCategoryIds": "Danh mục con",
+        "selectedCount": "đã chọn",
+        "currentParentIncluded": "Bao gồm hiện tại"
+      },
+      "placeholder": {
+        "name": "Nhập tên danh mục của bạn",
+        "parentCategoryId": "Chọn danh mục cha",
+        "searchParentCategoryId": "Tìm kiếm danh mục cha",
+        "subCategoryIds": "Chọn danh mục phụ",
+        "searchSubCategoryIds": "Tìm kiếm danh mục phụ"
+      },
+      "button": {
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "create": "Tạo danh mục",
+        "addSubCategory": "Thêm danh mục phụ",
+        "edit": "Chỉnh sửa danh mục"
+      },
+      "title": {
+        "edit": "Chỉnh sửa danh mục",
+        "create": "Tạo danh mục",
+        "addSubCategory": "Tạo danh mục phụ"
+      },
+      "description": {
+        "parentCategoryId": "Để trống để tạo danh mục cấp gốc",
+        "subCategoryIds": "Chọn các danh mục phụ để liên kết với danh mục này",
+        "hierarchyTitle": "Danh mục phân cấp",
+        "parentCategory": "Danh mục cha:",
+        "subCategories": "Danh mục con:",
+        "currentCategory": "Danh mục hiện tại:",
+        "newCategory": "Danh mục mới"
+      },
+      "option": {
+        "none": "None (Danh mục gốc)",
+        "noneDescription": "Đặt đây là danh mục cấp cao nhất",
+        "description": "sản phẩm"
+      },
+      "message": {
+        "noCategoryFound": "Không tìm thấy danh mục nào",
+        "noSubCategoryFound": "Không tìm thấy danh mục phụ nào"
       }
     }
   },
@@ -441,6 +508,10 @@
     }
   },
   "Component": {
+    "Breadcrumb": {
+      "home": "Trang chủ",
+      "ellipsis": "..."
+    },
     "ManageMenu": {
       "label": "Tài khoản của tôi",
       "account": "Quản lý tài khoản"
@@ -458,6 +529,9 @@
       },
       "products": {
         "label": "Sản phẩm"
+      },
+      "categories": {
+        "label": "Danh mục"
       }
     },
     "BaseDropBox": {
@@ -606,6 +680,7 @@
     },
     "Products": {
       "titleListProducts": "Quản lý sản phẩm",
+      "titleApplyProducts": "Áp dụng sản phẩm vào danh mục",
       "title": "Chi tiết sản phẩm",
       "fields": {
         "id": "ID",
@@ -643,6 +718,59 @@
       "tooltip": {
         "edit": "Chỉnh sửa sản phẩm"
       }
+    },
+    "Categories": {
+      "titleListCategories": "Quản lý danh mục",
+      "titleSearch": "Tìm kiếm danh mục",
+      "title": "Danh mục chi tiết",
+      "titleAll": "Tất cả danh mục",
+      "titleApplyProduct": "Áp dụng sản phẩm",
+      "description": "Quản lý danh mục sản phẩm và cấu trúc phân cấp của chúng.",
+      "fields": {
+        "products": "Sản phẩm",
+        "id": "ID",
+        "name": "Tên",
+        "createdAt": "Được tạo lúc",
+        "updatedAt": "Cập nhật lúc",
+        "parentCategoryId": "Danh mục cha",
+        "subCategories": "Danh mục con"
+      },
+      "actions": {
+        "copyId": "Sao chép ID",
+        "edit": "Chỉnh sửa",
+        "detail": "Chi tiết",
+        "delete": "Xóa",
+        "dialogs": {
+          "edit": {
+            "title": "Chỉnh sửa danh mục",
+            "cancel": "Hủy",
+            "save": "Lưu"
+          },
+          "delete": {
+            "title": "Xóa danh mục"
+          },
+          "apply": {
+            "title": "Áp dụng sản phẩm",
+            "description": "Bạn muốn áp dụng các sản phẩm đã chọn cho danh mục này?",
+            "cancel": "Hủy",
+            "save": "Lưu"
+          }
+        },
+        "remove": "Xóa khỏi danh mục",
+        "removeBtn": "Xóa",
+        "applyProduct": "Áp dụng sản phẩm"
+      },
+      "sections": {
+        "categoryInfo": "Thông tin danh mục"
+      },
+      "label": {
+        "parentCategoryId": "Danh mục gốc",
+        "subCategoryIds": "Các danh mục con",
+        "subUnder": "Các danh mục con được lồng vào bên dưới"
+      },
+      "button": {
+        "apply": "Áp dụng"
+      }
     }
   },
   "Messages": {
@@ -652,6 +780,8 @@
     "error": {
       "toast": {
         "error": "Lỗi máy chủ nội bộ",
+        "undefined": "Lỗi không xác định",
+        "selectProduct": "Vui lòng chọn ít nhất một sản phẩm",
         "200": "Thành công",
         "201": "Tạo mới",
         "400": "Lỗi người dùng",
@@ -710,6 +840,9 @@
         "notification": "các tập tin đã chọn",
         "more": "được phép thêm"
       }
+    },
+    "title": {
+      "new": "Mới"
     }
   },
   "Delete": {

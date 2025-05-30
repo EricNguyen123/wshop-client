@@ -23,6 +23,7 @@ export const productCreateSchema = z.object({
     .number()
     .min(0, { message: MESSAGES.ZOD.PRODUCT.CREATE.MULTIPLICATION_RATE.REQUIRED }),
   discount: z.coerce.number().optional(),
+  categoryIds: z.array(z.string()).optional(),
 });
 
 export const productEditSchema = z.object({
@@ -37,4 +38,5 @@ export const productEditSchema = z.object({
   multiplicationRate: z.coerce.number().optional(),
   discount: z.coerce.number().optional(),
   mediaIds: z.array(z.string()).optional(),
+  categoryIds: z.array(z.string()).optional(),
 });

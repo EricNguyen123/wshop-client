@@ -62,6 +62,11 @@ export const createProductAsync =
       formData.append('status', data.value.status?.toString() ?? '');
       formData.append('multiplicationRate', data.value.multiplicationRate?.toString() ?? '');
       formData.append('discount', data.value.discount?.toString() ?? '');
+      if (Array.isArray(data.value.categoryIds)) {
+        data.value.categoryIds.forEach((id: string) => {
+          formData.append('categoryIds', id);
+        });
+      }
 
       const response = await createProductApi({ data: formData });
       if (response.status === 200) {
@@ -100,6 +105,11 @@ export const updateProductAsync =
       if (Array.isArray(data.value.mediaIds)) {
         data.value.mediaIds.forEach((id: string) => {
           formData.append('mediaIds', id);
+        });
+      }
+      if (Array.isArray(data.value.categoryIds)) {
+        data.value.categoryIds.forEach((id: string) => {
+          formData.append('categoryIds', id);
         });
       }
 

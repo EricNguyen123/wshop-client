@@ -122,7 +122,7 @@ const RenderRole = ({
 
   return (
     <div className='flex items-center gap-6'>
-      {selectUser?.role ? renderRoleBadge(selectUser.role, t) : symbols.inValid}
+      {selectUser?.role ? renderRoleBadge(user?.role ?? ValidRolesEnum.USER, t) : symbols.inValid}
 
       {[ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR].includes(
         currentAccount?.role ?? ValidRolesEnum.USER

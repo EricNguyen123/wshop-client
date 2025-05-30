@@ -28,7 +28,6 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
 import { FileX } from 'lucide-react';
-import { columnsKey } from '@/constant/common';
 import { SelectColumns } from './select-columns';
 import BaseSearch from '../input/search';
 
@@ -58,9 +57,7 @@ export function UseTable<TData, TValue>({
   const t = useTranslations('Component.Tables');
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
-    [columnsKey.select]: false,
-  });
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const [{ pageIndex, pageSize: currentPageSize }, setPagination] = useState({
     pageIndex: 0,

@@ -18,6 +18,7 @@ export default function LayoutManager({ children }: IProps) {
     [config.routes.private.account]: t('account.label'),
     [config.routes.private.banners]: t('banners.label'),
     [config.routes.private.products]: t('products.label'),
+    [config.routes.private.categories]: t('categories.label'),
   };
   const currentTitle = useCurrentTitle(pathname, pathToTitle);
 

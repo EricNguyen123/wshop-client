@@ -2,7 +2,7 @@
 
 import React from 'react';
 import GroupSidebar from './group-sidebar';
-import { GalleryVertical, Package, User, Users } from 'lucide-react';
+import { Folders, GalleryVertical, Package, User, Users } from 'lucide-react';
 import config from '@/config';
 import { useTranslations } from 'next-intl';
 import { ValidRolesEnum } from '@/common/enum';
@@ -41,6 +41,12 @@ export default function BaseSidebar() {
       title: t('products.label'),
       icon: Package,
       url: config.routes.private.products,
+      roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
+    },
+    {
+      title: t('categories.label'),
+      icon: Folders,
+      url: config.routes.private.categories,
       roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
     },
   ];

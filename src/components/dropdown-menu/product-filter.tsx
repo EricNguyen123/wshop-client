@@ -16,9 +16,9 @@ import BaseTooltip from '../tooltip/base-tooltip';
 import { IconButton } from '../button/button-icon';
 import { ListFilter, ListFilterPlus, ListPlus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { StatusOption } from '../select/status-selector';
 import { StatusProductEnum } from '@/common/enum';
 import ItemMenu from './item-menu';
+import { StatusOption } from '@/types/common';
 
 export default function ProductFilter({
   handleStatusChange,

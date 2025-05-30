@@ -390,6 +390,7 @@ export interface IGetListProductsRes extends IBaseGetListResponse {
 
 export interface IProductRes extends IProduct {
   medias?: IMedia[];
+  categories?: ICategoryRes[];
 }
 
 export interface IProduct {
@@ -417,6 +418,7 @@ export interface ICreateProductResponse extends IBaseResponse {
   data: {
     product: IProduct;
     medias: IMedia[];
+    categories: ICategoryRes[];
   };
 }
 
@@ -439,6 +441,7 @@ export interface ICreateProductReq {
     status?: number;
     multiplicationRate?: number;
     discount?: number;
+    categoryIds?: string[];
   };
   setToastSuccess: (status?: number) => void;
   setToastError: (status?: number) => void;
@@ -461,6 +464,7 @@ export interface IUpdateProduct {
   discount?: number;
   mediaIds?: string[];
   files?: File[];
+  categoryIds?: string[];
 }
 
 export interface IUpdateProductReq {
@@ -488,10 +492,119 @@ export interface IGetDetailProductReq {
   setToastSuccess: (status?: number) => void;
   setToastError: (status?: number) => void;
 }
+
+export interface ICategoryTreeProps {
+  categories: ICategoryRes[];
+  level?: number;
+  allData?: ICategoryRes[];
+}
+
+export interface ICategoryState {
+  detail: ICategoryDetailRes | undefined;
+  categories: IGetListCategoriesRes | undefined;
+  status: TStatusSlice;
+}
+
+export interface ICategoryRes {
+  id?: string;
+  name?: string;
+  parentCategoryId?: string | null;
+  subCategories?: ICategoryRes[];
+  productCount?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface IGetListCategoriesRes extends IBaseGetListResponse {
+  data: ICategoryRes[];
+}
+
+export interface IGetListCategoriesResponse extends IBaseResponse {
+  data: IGetListCategoriesRes;
+}
+
+export interface ICreateCategoryResponse extends IBaseResponse {
+  data: ICategoryRes;
+}
+
+export interface ICreateCategory {
+  name?: string;
+  parentCategoryId?: string | null;
+  subCategoryIds?: string[];
+}
+
+export interface IGetListCategoriesReq {
+  value: IGetListReq;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface ICreateCategoryReq {
+  value: ICreateCategory;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IUpdateCategoryReq {
+  value: ICreateCategory;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IDeleteCategoryReq {
+  value: {
+    categoryId: string;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface ICategoryDetailRes {
+  id?: string;
+  name?: string;
+  parentCategoryId?: string | null;
+  subCategories?: ICategoryRes[];
+  products?: IProductRes[];
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface IGetDetailCategoryResponse extends IBaseResponse {
+  data: ICategoryDetailRes;
+}
+
+export interface IGetDetailCategoryReq {
+  value: {
+    categoryId: string;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IRemoveProductsFromCategoryReq {
+  value: {
+    categoryId: string;
+    productIds: string[];
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IApplyProductsFromCategoryReq {
+  value: {
+    categoryId: string;
+    productIds: string[];
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
 //#endregion interfaces
 
 //#region types
-
+export type StatusOption = {
+  value: string;
+  label: string;
+};
 //#endregion types
 
 //#region files

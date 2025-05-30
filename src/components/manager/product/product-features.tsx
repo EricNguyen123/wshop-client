@@ -1,19 +1,20 @@
 import React from 'react';
-import CreateProductDialog from './create-product-dialog';
 import ProductFilter from '@/components/dropdown-menu/product-filter';
 
 export default function ProductFeatures({
   handleStatusChange,
   currentStatus,
   handleAll,
+  moreComponent,
 }: {
   handleStatusChange: (value?: string) => void;
   currentStatus?: string;
   handleAll: () => void;
+  moreComponent?: React.ReactNode;
 }) {
   return (
     <div className='grid grid-flow-col gap-2'>
-      <CreateProductDialog />
+      {moreComponent}
       <ProductFilter
         handleStatusChange={handleStatusChange}
         currentStatus={currentStatus}

@@ -78,3 +78,65 @@ export async function convertFilesWithPreviewToFiles(files: FileWithPreview[]): 
   }
   return convertedFiles;
 }
+
+export interface Category {
+  id: string;
+  name: string;
+  parentCategoryId: string | null;
+  subCategories: Category[];
+  productCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CategoryOption {
+  value: string;
+  label: string;
+  description?: string;
+  level: number;
+}
+
+export function flattenCategories(
+  categories: Category[],
+  level: number = 0,
+  description?: string
+): CategoryOption[] {
+  const result: CategoryOption[] = [];
+
+  for (const category of categories) {
+    result.push({
+      value: category.id,
+      label: `${category.name}`,
+      description: `${category.productCount} ${description || ''}`,
+      level,
+    });
+
+    if (category.subCategories && category.subCategories.length > 0) {
+      result.push(...flattenCategories(category.subCategories, level + 1, description));
+    }
+  }
+
+  return result;
+}
+
+export function findCategoryById(categories: Category[], id: string): Category | null {
+  for (const category of categories) {
+    if (category.id === id) {
+      return category;
+    }
+
+    if (category.subCategories && category.subCategories.length > 0) {
+      const found = findCategoryById(category.subCategories, id);
+      if (found) return found;
+    }
+  }
+
+  return null;
+}
+
+export function isWithinThreshold(createdAt: string | Date, thresholdHours: number): boolean {
+  const created = new Date(createdAt);
+  const now = new Date();
+  const diffInHours = (now.getTime() - created.getTime()) / (1000 * 60 * 60);
+  return diffInHours <= thresholdHours;
+}

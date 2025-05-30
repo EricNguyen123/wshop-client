@@ -75,6 +75,13 @@
           "required": "Multiplication rate is required"
         }
       }
+    },
+    "category": {
+      "create": {
+        "name": {
+          "required": "Category name is required"
+        }
+      }
     }
   },
   "Root": {
@@ -113,6 +120,12 @@
     "Product": {
       "label": "Products",
       "detail": "Detail Product"
+    },
+    "Category": {
+      "label": "Categories",
+      "detail": "Detail Category",
+      "applyProduct": "Apply to Category",
+      "unknownCategory": "Unknown Category"
     }
   },
   "Form": {
@@ -364,7 +377,10 @@
         "multiplicationRate": "Multiplication Rate",
         "discount": "Discount",
         "status": "Status",
-        "media": "Media"
+        "media": "Media",
+        "categoryIds": "Apply Category",
+        "organization": "Organization",
+        "info": "Product Information"
       },
       "placeholder": {
         "name": "Enter your name",
@@ -379,7 +395,9 @@
         "status": "Select Status",
         "uploadImage": "Upload Image",
         "uploadImageSubtext": "Drag and drop your image here",
-        "uploadImageNote": "Supports images up to"
+        "uploadImageNote": "Supports images up to",
+        "categoryIds": "Select Category",
+        "searchCategoryIds": "Search Category"
       },
       "button": {
         "save": "Save",
@@ -397,6 +415,55 @@
         "3": "Inactive",
         "4": "Out of stock",
         "5": "Discontinued"
+      },
+      "message": {
+        "noCategoryFound": "No categories found"
+      }
+    },
+    "CategoryCreate": {
+      "label": {
+        "name": "Category Name",
+        "parentCategoryId": "Parent Category",
+        "subCategoryIds": "Sub Categories",
+        "selectedCount": "selected",
+        "currentParentIncluded": "Current Parent Included"
+      },
+      "placeholder": {
+        "name": "Enter your category name",
+        "parentCategoryId": "Select Parent Category",
+        "searchParentCategoryId": "Search Parent Category",
+        "subCategoryIds": "Select Sub Categories",
+        "searchSubCategoryIds": "Search Sub Categories"
+      },
+      "button": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "create": "Create Category",
+        "addSubCategory": "Add Sub Category",
+        "edit": "Edit Category"
+      },
+      "title": {
+        "edit": "Edit Category",
+        "create": "Create Category",
+        "addSubCategory": "Add Sub Category"
+      },
+      "description": {
+        "parentCategoryId": "Leave empty to create a root-level category",
+        "subCategoryIds": "Select subcategories to associate with this category",
+        "hierarchyTitle": "Category Hierarchy",
+        "parentCategory": "Parent Category:",
+        "subCategories": "Sub Categories:",
+        "currentCategory": "Current Category:",
+        "newCategory": "New Category"
+      },
+      "option": {
+        "none": "None (Root Category)",
+        "noneDescription": "Make this a top-level category",
+        "description": "products"
+      },
+      "message": {
+        "noCategoryFound": "No categories found",
+        "noSubCategoryFound": "No subcategories found"
       }
     }
   },
@@ -441,6 +508,10 @@
     }
   },
   "Component": {
+    "Breadcrumb": {
+      "home": "Home",
+      "ellipsis": "..."
+    },
     "ManageMenu": {
       "label": "My Account",
       "account": "Manage Account"
@@ -458,6 +529,9 @@
       },
       "products": {
         "label": "Products"
+      },
+      "categories": {
+        "label": "Categories"
       }
     },
     "BaseDropBox": {
@@ -609,6 +683,7 @@
     },
     "Products": {
       "titleListProducts": "Manage Products",
+      "titleApplyProducts": "Apply products to category",
       "title": "Detail Product",
       "fields": {
         "id": "ID",
@@ -646,6 +721,58 @@
       "tooltip": {
         "edit": "Edit Product"
       }
+    },
+    "Categories": {
+      "titleListCategories": "Manage Categories",
+      "titleSearch": "Search Categories",
+      "title": "Detail Category",
+      "titleAll": "All Categories",
+      "titleApplyProduct": "Apply Product",
+      "description": "Manage your product categories and their hierarchical structure.",
+      "fields": {
+        "products": "Products",
+        "id": "ID",
+        "name": "Name",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At",
+        "parentCategoryId": "Parent Category",
+        "subCategories": "Sub Categories"
+      },
+      "actions": {
+        "edit": "Edit",
+        "detail": "Detail",
+        "delete": "Delete",
+        "dialogs": {
+          "edit": {
+            "title": "Edit Category",
+            "cancel": "Cancel",
+            "save": "Save"
+          },
+          "delete": {
+            "title": "Delete Category"
+          },
+          "apply": {
+            "title": "Apply Products",
+            "description": "Do you want to apply the selected products to this category?",
+            "cancel": "Cancel",
+            "save": "Save"
+          }
+        },
+        "remove": "Remove From Category",
+        "removeBtn": "Remove",
+        "applyProduct": "Apply Product"
+      },
+      "sections": {
+        "categoryInfo": "Category Information"
+      },
+      "label": {
+        "parentCategoryId": "Root Category",
+        "subCategoryIds": "Sub Categories",
+        "subUnder": "Child categories nested under"
+      },
+      "button": {
+        "apply": "Apply"
+      }
     }
   },
   "Messages": {
@@ -655,6 +782,8 @@
     "error": {
       "toast": {
         "error": "Internal server error",
+        "undefined": "Unknown error",
+        "selectProduct": "Please select at least one product",
         "200": "OK",
         "201": "Created",
         "400": "Bad Request",
@@ -714,6 +843,9 @@
         "notification": "files selected",
         "more": "more allowed"
       }
+    },
+    "title": {
+      "new": "New"
     }
   },
   "Delete": {

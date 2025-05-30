@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Convert large numbers to K (thousand), M (million), B (billion) format
  * @param {number} num - Number to convert
@@ -469,4 +470,32 @@ export function applyMultiplicationRate(
     differenceFormatted: (difference >= 0 ? '+' : '') + formatCurrency(difference),
     rate: rateFormatted,
   };
+}
+
+export function findNodeById<T extends Record<string, any>>(
+  tree: T[],
+  targetId: string,
+  options: {
+    idKey?: string;
+    childrenKey?: string;
+  } = {}
+): T | undefined {
+  const idKey = options.idKey ?? 'id';
+  const childrenKey = options.childrenKey ?? 'children';
+
+  for (const node of tree) {
+    if (node[idKey] === targetId) {
+      return node;
+    }
+
+    const children = node[childrenKey];
+    if (Array.isArray(children)) {
+      const result = findNodeById(children, targetId, options);
+      if (result) {
+        return result;
+      }
+    }
+  }
+
+  return undefined;
 }

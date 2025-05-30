@@ -12,6 +12,8 @@ const routes = {
     users: '/manager/users',
     banners: '/manager/banners',
     products: '/manager/products',
+    categories: '/manager/categories',
+    applyProduct: (id: string | number) => `/manager/categories/${id}/apply-product`,
   },
   protected: {
     google: '/auth/google/login',

@@ -28,9 +28,10 @@ export const productSlice = createSlice({
     },
 
     createProductSuccess: (state, action: PayloadAction<ICreateProductResponse>) => {
-      const newBanner = {
+      const newProduct = {
         ...action.payload.data.product,
         medias: action.payload.data.medias,
+        categories: action.payload.data.categories,
       };
       const currentData = state.products?.data ?? [];
       const currentTotal = state.products?.total ?? query.total;
@@ -41,7 +42,7 @@ export const productSlice = createSlice({
 
       state.products = {
         ...state.products,
-        data: [newBanner, ...currentData],
+        data: [newProduct, ...currentData].slice(0, currentLimit),
         total: updatedTotal,
         page: state.products?.page ?? query.page,
         limit: currentLimit,

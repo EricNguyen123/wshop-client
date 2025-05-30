@@ -38,7 +38,7 @@ export const bannerSlice = createSlice({
 
       state.banners = {
         ...state.banners,
-        data: [newBanner, ...currentData],
+        data: [newBanner, ...currentData].slice(0, currentLimit),
         total: updatedTotal,
         page: state.banners?.page ?? query.page,
         limit: currentLimit,

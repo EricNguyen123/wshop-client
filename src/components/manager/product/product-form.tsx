@@ -21,14 +21,13 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import ButtonLoading from '@/components/button/button-loading';
 import { Textarea } from '@/components/ui/textarea';
-import type { FileWithPreview } from '@/types/common';
+import type { FileWithPreview, StatusOption } from '@/types/common';
 import { FileUpload } from '@/components/input/file-upload/file-upload';
 import { convertFilesWithPreviewToFiles } from '@/utils/common';
 import { productCreateSchema, productEditSchema } from '@/validations/product/product-schema';
 import { createProductAsync, updateProductAsync } from '@/lib/store/features/product/thunk';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { StatusProductEnum } from '@/common/enum';
-import { StatusOption } from '@/components/select/status-selector';
 import {
   Select,
   SelectContent,
@@ -40,8 +39,10 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { Percent, X } from 'lucide-react';
 import { useDebounce } from '@/utils/hooks/use-debounce';
+import FieldCategory from './field-category';
+import { Label } from '@/components/ui/label';
 
-type ProductFormValues = z.infer<typeof productCreateSchema> & {
+export type ProductFormValues = z.infer<typeof productCreateSchema> & {
   mediaIds?: string[];
 };
 
@@ -92,6 +93,9 @@ export default function ProductForm({
     multiplicationRate: data?.multiplicationRate || 1,
     discount: data?.discount || 0,
     mediaIds: Array.isArray(data?.medias) ? data?.medias?.map((media: any) => media.id) : [],
+    categoryIds: Array.isArray(data?.categories)
+      ? data?.categories?.map((category: any) => category.id)
+      : [],
   };
 
   const isEdit = variant === 'edit';
@@ -234,7 +238,10 @@ export default function ProductForm({
               uploadNoteText={t('placeholder.uploadImageNote')}
               previewType='grid'
             />
-            <Separator />
+            <div className='space-y-2'>
+              <Label className='text-lg font-bold'>{t('label.info')}</Label>
+              <Separator />
+            </div>
             <FormField
               control={form.control}
               name='name'
@@ -500,6 +507,8 @@ export default function ProductForm({
                 </FormItem>
               )}
             />
+
+            <FieldCategory form={form} />
           </div>
         </ScrollArea>
 

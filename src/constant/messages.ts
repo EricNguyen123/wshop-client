@@ -63,6 +63,11 @@ export const MESSAGES = {
         MULTIPLICATION_RATE: { REQUIRED: 'product.create.multiplicationRate.required' },
       },
     },
+    CATEGORY: {
+      CREATE: {
+        NAME: { REQUIRED: 'category.create.name.required' },
+      },
+    },
   },
 };
 

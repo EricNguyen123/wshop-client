@@ -64,7 +64,7 @@ export const userSlice = createSlice({
 
       state.users = {
         ...state.users,
-        data: [newUser, ...currentData],
+        data: [newUser, ...currentData].slice(0, currentLimit),
         total: updatedTotal,
         page: state.users?.page ?? query.page,
         limit: currentLimit,

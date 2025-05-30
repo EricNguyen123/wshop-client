@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { columnsKeyProduct, query, sort, symbols } from '@/constant/common';
 import { IProductRes } from '@/types/common';
 import type { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, Copy, Eye, SquarePen, Trash } from 'lucide-react';
+import { ArrowUpDown, Copy, Eye } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/lib/store/hooks';
@@ -17,27 +17,19 @@ import BasePagination from '@/components/pagination/base-pagination';
 import { useRouter } from '@/i18n/navigation';
 import config from '@/config';
 import { selectCurrentAccount } from '@/lib/store/features/auth/slice';
-import { DeleteConfirmation } from '@/components/delete/delete-confirmation';
 import BaseTitle from '@/components/box/drop-box/base-title';
-import { deleteProductAsync, getListProductsAsync } from '@/lib/store/features/product/thunk';
+import { getListProductsAsync } from '@/lib/store/features/product/thunk';
 import { DescriptionCell } from '../banner/description-cell';
 import { selectProducts } from '@/lib/store/features/product/slice';
 import { CustomCarousel } from '@/components/carousel/custom-carousel';
-import {
-  formatCurrency,
-  formatDiscount,
-  formatMultiplicationRate,
-  formatNumber,
-} from '@/utils/helpers';
+import { formatCurrency } from '@/utils/helpers';
 import BaseTooltip from '@/components/tooltip/base-tooltip';
-import ProductFeatures from './product-features';
-import ProductForm from './product-form';
 import images from '@/assets/images';
 import Image from 'next/image';
-import StatusProductCell from './status-product-cell';
-import CreateProductDialog from './create-product-dialog';
+import { Checkbox } from '@/components/ui/checkbox';
+import FeatureApply from './feature-apply';
 
-export default function ListProducts() {
+export default function CategoryApply({ categoryId }: { categoryId: string }) {
   const t = useTranslations('Component.Products');
   const [data, setData] = useState<IProductRes[]>([]);
   const dispatch = useAppDispatch();
@@ -49,9 +41,33 @@ export default function ListProducts() {
   const [currentPage, setCurrentPage] = useState<number>(query.page);
   const [totalPages, setTotalPages] = useState<number>(query.totalPages);
   const routes = useRouter();
-  const [currentStatus, setCurrentStatus] = useState<string>('');
 
   const columns: ColumnDef<IProductRes>[] = [
+    {
+      id: columnsKeyProduct.select,
+      header: ({ table }) => (
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && 'indeterminate')
+          }
+          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          aria-label='Select all'
+          className='cursor-pointer'
+        />
+      ),
+      cell: ({ row }) => (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          aria-label='Select row'
+          onClick={(e) => e.stopPropagation()}
+          className='cursor-pointer'
+        />
+      ),
+      enableSorting: false,
+      enableHiding: false,
+    },
     {
       accessorKey: columnsKeyProduct.medias,
       header: () => {
@@ -163,39 +179,6 @@ export default function ListProducts() {
       ),
     },
     {
-      accessorKey: columnsKeyProduct.description,
-      header: ({ column }) => {
-        return (
-          <Button
-            className='w-full'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
-          >
-            {t('fields.description')}
-            <ArrowUpDown />
-          </Button>
-        );
-      },
-      cell: ({ row }) => {
-        const description = row.getValue('description');
-        return (
-          <div className='w-full flex items-center justify-center'>
-            {description ? (
-              <div className='max-w-xs'>
-                <DescriptionCell
-                  description={typeof description === 'string' ? description : ''}
-                  variant='tooltip'
-                  className='w-full'
-                />
-              </div>
-            ) : (
-              <span className='text-sm text-muted-foreground'>{symbols.inValid}</span>
-            )}
-          </div>
-        );
-      },
-    },
-    {
       accessorKey: columnsKeyProduct.price,
       header: ({ column }) => {
         return (
@@ -222,155 +205,6 @@ export default function ListProducts() {
       ),
     },
     {
-      accessorKey: columnsKeyProduct.quantity,
-      header: ({ column }) => {
-        return (
-          <Button
-            className='w-full'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
-          >
-            {t('fields.quantity')}
-            <ArrowUpDown />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        <div className='w-full flex items-center justify-center'>
-          <BaseTooltip nameTooltip={row.getValue('quantity')}>
-            <span className='w-max text-nowrap text-sm font-normal'>
-              {row.getValue('quantity') ? formatNumber(row.getValue('quantity')) : symbols.inValid}
-            </span>
-          </BaseTooltip>
-        </div>
-      ),
-    },
-    {
-      accessorKey: columnsKeyProduct.quantityAlert,
-      header: ({ column }) => {
-        return (
-          <Button
-            className='w-full'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
-          >
-            {t('fields.quantityAlert')}
-            <ArrowUpDown />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        <div className='w-full flex items-center justify-center'>
-          <BaseTooltip nameTooltip={row.getValue('quantityAlert')}>
-            <span className='w-max text-nowrap text-sm font-normal'>
-              {row.getValue('quantityAlert')
-                ? formatNumber(row.getValue('quantityAlert'))
-                : symbols.inValid}
-            </span>
-          </BaseTooltip>
-        </div>
-      ),
-    },
-    {
-      accessorKey: columnsKeyProduct.orderUnit,
-      header: ({ column }) => {
-        return (
-          <Button
-            className='w-full'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
-          >
-            {t('fields.orderUnit')}
-            <ArrowUpDown />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        <div className='w-full flex items-center justify-center'>
-          <BaseTooltip nameTooltip={row.getValue('orderUnit')}>
-            <span className='w-max text-nowrap text-sm font-normal'>
-              {row.getValue('orderUnit')
-                ? formatNumber(row.getValue('orderUnit'))
-                : symbols.inValid}
-            </span>
-          </BaseTooltip>
-        </div>
-      ),
-    },
-    {
-      accessorKey: columnsKeyProduct.discount,
-      header: ({ column }) => {
-        return (
-          <Button
-            className='w-full'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
-          >
-            {t('fields.discount')}
-            <ArrowUpDown />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        <div className='w-full flex items-center justify-center'>
-          <span className='w-max text-nowrap text-sm font-normal'>
-            {row.getValue('discount')
-              ? formatDiscount(row.getValue('discount'), 'percent')
-              : symbols.inValid}
-          </span>
-        </div>
-      ),
-    },
-    {
-      accessorKey: columnsKeyProduct.status,
-      header: ({ column }) => {
-        return (
-          <Button
-            className='w-full'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
-          >
-            {t('fields.status')}
-            <ArrowUpDown />
-          </Button>
-        );
-      },
-      cell: ({ row }) => {
-        const status = Number(row.getValue('status'));
-
-        return <StatusProductCell status={status} />;
-      },
-    },
-    {
-      accessorKey: columnsKeyProduct.multiplicationRate,
-      header: ({ column }) => {
-        return (
-          <Button
-            className='w-full'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
-          >
-            {t('fields.multiplicationRate')}
-            <ArrowUpDown />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        <div className='w-full flex items-center justify-center'>
-          <span className='w-max text-nowrap text-sm font-normal'>
-            {row.getValue('multiplicationRate')
-              ? String(
-                  formatMultiplicationRate(row.getValue('multiplicationRate'), {
-                    format: 'percent',
-                    digits: 2,
-                  }).displayText
-                )
-              : symbols.inValid}
-          </span>
-        </div>
-      ),
-    },
-    {
       id: columnsKeyProduct.actions,
       enableHiding: false,
 
@@ -379,26 +213,6 @@ export default function ListProducts() {
         const handle = () => {
           if (product.id) {
             return navigator.clipboard.writeText(product.id);
-          }
-        };
-
-        const handleDelete = () => {
-          if (product.id) {
-            dispatch(
-              deleteProductAsync({
-                data: {
-                  value: { productId: product.id },
-                  setToastSuccess: (status?: number) => {
-                    showSuccessToast(tMessage(`toast.${status?.toString()}`));
-                  },
-                  setToastError: (status?: number) => {
-                    showErrorToast(
-                      tMessage(`toast.${status?.toString()}`) || tMessage('toast.error')
-                    );
-                  },
-                },
-              })
-            );
           }
         };
 
@@ -417,33 +231,9 @@ export default function ListProducts() {
                   roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
                 },
                 {
-                  content: t('actions.edit'),
-                  icon: <SquarePen className='h-4 w-4' />,
-                  dialog: {
-                    title: t('actions.dialogs.edit.title'),
-                    content: <ProductForm data={product} variant='edit' productId={product.id} />,
-                  },
-                  roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
-                },
-                {
                   content: t('actions.detail'),
                   icon: <Eye className='h-4 w-4' />,
                   onSelect: () => routes.push(`${config.routes.private.products}/${product.id}`),
-                  roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
-                },
-                {
-                  content: t('actions.delete'),
-                  icon: <Trash className='h-4 w-4 text-red-500 hover:text-red-600' />,
-                  className: 'text-red-500 hover:!text-red-600',
-                  dialog: {
-                    content: (
-                      <DeleteConfirmation
-                        title={t('actions.dialogs.delete.title')}
-                        onDelete={handleDelete}
-                        itemName={`${row.getValue('name')}`}
-                      />
-                    ),
-                  },
                   roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
                 },
               ]}
@@ -486,11 +276,14 @@ export default function ListProducts() {
 
   useEffect(() => {
     if (getProducts?.data) {
-      setData(getProducts?.data);
+      const dataProducts = getProducts?.data.filter(
+        (product) => !product.categories?.some((category) => category.id === categoryId)
+      );
+      setData(dataProducts);
       setTotalPages(getProducts?.totalPages);
       setIsLoading(false);
     }
-  }, [getProducts]);
+  }, [getProducts, categoryId]);
 
   const handleGetProducts = (payload: {
     page?: number;
@@ -522,7 +315,6 @@ export default function ListProducts() {
   };
 
   const handleSearch = (value: string) => {
-    setCurrentStatus('');
     setKeySearch(value);
     setCurrentPage(query.page);
     handleGetProducts({ page: query.page, textSearch: value });
@@ -536,23 +328,10 @@ export default function ListProducts() {
     }
   };
 
-  const handleStatusChange = (value?: string) => {
-    setCurrentStatus(value || '');
-    if (value !== '') {
-      handleGetProducts({ page: query.page, limit: query.limit, status: value });
-    } else {
-      handleGetProducts({ page: query.page, limit: query.limit });
-    }
-  };
-
-  const handleAll = () => {
-    handleGetProducts({ page: query.page, limit: query.limit });
-  };
-
   return (
     <div className='container  space-y-4'>
       <div className='flex justify-between items-center'>
-        <BaseTitle title={t('titleListProducts')} />
+        <BaseTitle title={t('titleApplyProducts')} />
       </div>
       <UseTable
         onChange={handleSearch}
@@ -570,14 +349,7 @@ export default function ListProducts() {
             routes.push(`${config.routes.private.products}/${product.id}`);
           }
         }}
-        moreFeatures={
-          <ProductFeatures
-            handleStatusChange={handleStatusChange}
-            currentStatus={currentStatus}
-            handleAll={handleAll}
-            moreComponent={<CreateProductDialog />}
-          />
-        }
+        moreFeatures={<FeatureApply data={data} categoryId={categoryId} />}
       />
       {totalPages > 1 && (
         <BasePagination

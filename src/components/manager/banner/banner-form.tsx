@@ -82,10 +82,10 @@ export default function BannerForm({
       form.setValue('endDate', dateRange.to);
     }
   }, [dateRange, form]);
-  console.log('file', file);
+
   function onSubmit(values: BannerFormValues) {
     setIsLoading(true);
-    console.log('values', values);
+
     if (uploadedFiles.length > 0) {
       values.url = uploadedFiles[0].preview || '';
     }
