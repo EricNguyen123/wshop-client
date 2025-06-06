@@ -499,3 +499,25 @@ export function findNodeById<T extends Record<string, any>>(
 
   return undefined;
 }
+
+//color
+export const generateColorVariations = (hexColor: string) => {
+  const hex = hexColor.replace('#', '');
+  const r = Number.parseInt(hex.substr(0, 2), 16);
+  const g = Number.parseInt(hex.substr(2, 2), 16);
+  const b = Number.parseInt(hex.substr(4, 2), 16);
+
+  const variations = [];
+  for (let i = 0; i < 5; i++) {
+    const factor = 0.2 + i * 0.2;
+    const newR = Math.round(r * factor + 255 * (1 - factor));
+    const newG = Math.round(g * factor + 255 * (1 - factor));
+    const newB = Math.round(b * factor + 255 * (1 - factor));
+    variations.push(
+      `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB
+        .toString(16)
+        .padStart(2, '0')}`
+    );
+  }
+  return variations.reverse();
+};

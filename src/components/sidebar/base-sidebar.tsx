@@ -2,7 +2,7 @@
 
 import React from 'react';
 import GroupSidebar from './group-sidebar';
-import { Folders, GalleryVertical, Package, User, Users } from 'lucide-react';
+import { Boxes, Folders, GalleryVertical, Package, Palette, User, Users } from 'lucide-react';
 import config from '@/config';
 import { useTranslations } from 'next-intl';
 import { ValidRolesEnum } from '@/common/enum';
@@ -20,6 +20,37 @@ export default function BaseSidebar() {
       roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR, ValidRolesEnum.USER],
     },
     {
+      title: t('banners.label'),
+      icon: GalleryVertical,
+      url: config.routes.private.banners,
+      roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
+    },
+    {
+      title: t('categories.label'),
+      icon: Folders,
+      url: config.routes.private.categories,
+      roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
+    },
+    {
+      title: t('products.label'),
+      icon: Package,
+      items: [
+        {
+          title: t('products.manage'),
+          url: config.routes.private.products,
+          roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
+          icon: Boxes,
+        },
+        {
+          title: t('colorTypes.label'),
+          icon: Palette,
+          url: config.routes.private.colorTypes,
+          roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
+        },
+      ],
+      roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
+    },
+    {
       title: t('users.label'),
       icon: Users,
       items: [
@@ -29,24 +60,6 @@ export default function BaseSidebar() {
           roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
         },
       ],
-      roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
-    },
-    {
-      title: t('banners.label'),
-      icon: GalleryVertical,
-      url: config.routes.private.banners,
-      roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
-    },
-    {
-      title: t('products.label'),
-      icon: Package,
-      url: config.routes.private.products,
-      roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
-    },
-    {
-      title: t('categories.label'),
-      icon: Folders,
-      url: config.routes.private.categories,
       roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
     },
   ];

@@ -598,6 +598,72 @@ export interface IApplyProductsFromCategoryReq {
   setToastSuccess: (status?: number) => void;
   setToastError: (status?: number) => void;
 }
+
+export interface IColorType {
+  id: string;
+  name: string;
+  colorCode: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IColorTypeState {
+  detail: IColorType | undefined;
+  colorTypes: IGetListColorTypesRes | undefined;
+  status: TStatusSlice;
+}
+
+export interface IGetListColorTypesRes extends IBaseGetListResponse {
+  data: IColorType[];
+}
+
+export interface IGetListColorTypesResponse extends IBaseResponse {
+  data: IGetListColorTypesRes;
+}
+
+export interface IGetListColorTypesReq {
+  value: IGetListReq;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface ICreateColorTypeResponse extends IBaseResponse {
+  data: IColorType;
+}
+
+export interface ICreateColorType {
+  name: string;
+  colorCode: string;
+}
+
+export interface ICreateColorTypeReq {
+  value: ICreateColorType;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IUpdateColorType {
+  name?: string;
+  colorCode?: string;
+}
+
+export interface IUpdateColorTypeResponse extends IBaseResponse {
+  data: IColorType;
+}
+
+export interface IUpdateColorTypeReq {
+  value: IUpdateColorType;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IDeleteColorTypeReq {
+  value: {
+    colorTypeId: string;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
 //#endregion interfaces
 
 //#region types

@@ -126,6 +126,9 @@
       "detail": "Detail Category",
       "applyProduct": "Apply to Category",
       "unknownCategory": "Unknown Category"
+    },
+    "ColorTypes": {
+      "label": "Color Types"
     }
   },
   "Form": {
@@ -465,6 +468,29 @@
         "noCategoryFound": "No categories found",
         "noSubCategoryFound": "No subcategories found"
       }
+    },
+    "ColorTypesCreate": {
+      "label": {
+        "name": "Color Name",
+        "code": "Code"
+      },
+      "placeholder": {
+        "name": "e.g., Ocean Blue, Forest Green",
+        "code": "Enter your code"
+      },
+      "button": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "create": "Create Color Types"
+      },
+      "title": {
+        "edit": "Edit Color Types",
+        "create": "Create Color Types"
+      },
+      "description": {
+        "edit": "'Update the color type information below.",
+        "create": "Create a new color type for your palette."
+      }
     }
   },
   "Button": {
@@ -528,10 +554,14 @@
         "label": "Banners"
       },
       "products": {
-        "label": "Products"
+        "label": "Products",
+        "manage": "Manage Products"
       },
       "categories": {
         "label": "Categories"
+      },
+      "colorTypes": {
+        "label": "Color Types"
       }
     },
     "BaseDropBox": {
@@ -772,6 +802,34 @@
       },
       "button": {
         "apply": "Apply"
+      }
+    },
+    "ColorTypes": {
+      "title": "Color Palette",
+      "titleDescription": "Manage your brand colors with style",
+      "titleColor": "Colors",
+      "titleUpdate": "Updated Today",
+      "actions": {
+        "copyId": "Copy code",
+        "edit": "Edit",
+        "delete": "Delete",
+        "dialogs": {
+          "delete": {
+            "title": "Delete Color"
+          }
+        }
+      },
+      "descriptions": {
+        "noData": "No colors in your palette",
+        "noData2": "Start building your color system by adding your first color. Create beautiful, consistent palettes for your projects.",
+        "copy": "Copied to clipboard!",
+        "created": "Created",
+        "hexCode": "Hex Code",
+        "copied": "Copied!",
+        "copy2": "Copy"
+      },
+      "button": {
+        "create": "Add New Color"
       }
     }
   },

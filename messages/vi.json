@@ -126,6 +126,9 @@
       "detail": "Chi tiết danh mục",
       "applyProduct": "Áp dụng cho danh mục",
       "unknownCategory": "Không tìm thấy danh mục nào"
+    },
+    "ColorTypes": {
+      "label": "Kiểu màu"
     }
   },
   "Form": {
@@ -465,6 +468,29 @@
         "noCategoryFound": "Không tìm thấy danh mục nào",
         "noSubCategoryFound": "Không tìm thấy danh mục phụ nào"
       }
+    },
+    "ColorTypesCreate": {
+      "label": {
+        "name": "Tên màu",
+        "code": "Mã"
+      },
+      "placeholder": {
+        "name": "ví dụ: Xanh đại dương, Xanh lá cây rừng",
+        "code": "Nhập mã của bạn"
+      },
+      "button": {
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "create": "Tạo loại màu"
+      },
+      "title": {
+        "edit": "Chỉnh sửa loại màu",
+        "create": "Tạo loại màu"
+      },
+      "description": {
+        "edit": "Cập nhật thông tin loại màu bên dưới.",
+        "create": "Tạo loại màu mới cho bảng màu của bạn."
+      }
     }
   },
   "Button": {
@@ -528,10 +554,14 @@
         "label": "Banners"
       },
       "products": {
-        "label": "Sản phẩm"
+        "label": "Sản phẩm",
+        "manage": "Quản lý sản phẩm"
       },
       "categories": {
         "label": "Danh mục"
+      },
+      "colorTypes": {
+        "label": "Kiểu màu"
       }
     },
     "BaseDropBox": {
@@ -770,6 +800,34 @@
       },
       "button": {
         "apply": "Áp dụng"
+      }
+    },
+    "ColorTypes": {
+      "title": "Bảng màu",
+      "titleDescription": "Quản lý màu sắc thương hiệu của bạn theo phong cách",
+      "titleColor": "Màu sắc",
+      "titleUpdate": "Cập nhật hôm nay",
+      "actions": {
+        "copyId": "Sao chép mã",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa",
+        "dialogs": {
+          "delete": {
+            "title": "Xóa màu"
+          }
+        }
+      },
+      "descriptions": {
+        "noData": "Không có màu nào trong bảng màu của bạn",
+        "noData2": "Bắt đầu xây dựng hệ thống màu của bạn bằng cách thêm màu đầu tiên. Tạo bảng màu đẹp, nhất quán cho các dự án của bạn.",
+        "copy": "Đã sao chép vào bảng tạm!",
+        "created": "Đã tạo",
+        "hexCode": "Mã Hex",
+        "copied": "Đã sao chép!",
+        "copy2": "Sao chép"
+      },
+      "button": {
+        "create": "Thêm màu mới"
       }
     }
   },

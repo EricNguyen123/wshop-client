@@ -23,6 +23,7 @@ import { CategoryListSkeleton } from './category-list-skeleton';
 import CreateCategoryDialog from './create-category-dialog';
 import { Category } from '@/utils/common';
 import NoResult from '@/components/not-found/no-result';
+import BaseTitle from '@/components/box/drop-box/base-title';
 
 export function CategoryList() {
   const t = useTranslations('Component.Categories');
@@ -119,6 +120,9 @@ export function CategoryList() {
 
   return (
     <div className='space-y-4'>
+      <div className='flex justify-between items-center'>
+        <BaseTitle title={t('titleListCategories')} />
+      </div>
       <div className='w-full flex  items-center justify-between space-y-2 lg:space-y-0 space-x-2'>
         <div className='w-full flex items-center justify-start mb-0'>
           <BaseSearch placeholder={t('titleSearch')} onChange={handleSearch} variant='default' />
