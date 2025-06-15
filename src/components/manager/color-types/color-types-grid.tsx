@@ -176,9 +176,11 @@ export function ColorTypesGrid({ colorTypes, onEdit, onDelete }: ColorTypesGridP
                 <div className='space-y-3'>
                   <div className='flex items-start justify-between'>
                     <div className='space-y-1 flex-1'>
-                      <h3 className='font-bold text-xl  leading-tight text-foreground transition-colors'>
-                        {colorType.name}
-                      </h3>
+                      <BaseTooltip nameTooltip={colorType.name}>
+                        <h3 className='w-max max-w-48 font-bold text-xl truncate leading-tight text-foreground transition-colors'>
+                          {colorType.name}
+                        </h3>
+                      </BaseTooltip>
                       <p className='text-sm text-accent-foreground/50 font-medium'>
                         {t('descriptions.created')} {format(new Date(colorType.createdAt), 'PPpp')}
                       </p>

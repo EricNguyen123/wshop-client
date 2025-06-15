@@ -4,14 +4,16 @@ import {
   IDeleteProductReq,
   IGetDetailProductReq,
   IGetListProductsReq,
+  IGetListReq,
   IUpdateProductReq,
 } from '@/types/common';
-import { AppDispatch } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import {
   createProductSuccess,
   deleteProductSuccess,
   getDetailProductSuccess,
   getListProductsSuccess,
+  setFilter,
   setStatus,
   updateProductSuccess,
 } from './slice';
@@ -22,6 +24,7 @@ import {
   getListProductsApi,
   updateProductApi,
 } from './api';
+import { query } from '@/constant/common';
 
 export const getListProductsAsync =
   (payload: { data: IGetListProductsReq }) => async (dispatch: AppDispatch) => {
@@ -32,6 +35,7 @@ export const getListProductsAsync =
       if (response.status === 200) {
         dispatch(getListProductsSuccess(response));
         data.setToastSuccess(response.code);
+        dispatch(setFilter({ status: data.value.status }));
       }
     } catch (error: any) {
       dispatch(setStatus('failed'));
@@ -127,14 +131,32 @@ export const updateProductAsync =
   };
 
 export const deleteProductAsync =
-  (payload: { data: IDeleteProductReq }) => async (dispatch: AppDispatch) => {
-    const { data } = payload;
+  (payload: { data: IDeleteProductReq; getData?: IGetListReq }) =>
+  async (dispatch: AppDispatch, getState: () => RootState) => {
+    const { data, getData } = payload;
     dispatch(setStatus('loading'));
     try {
       const response = await deleteProductApi({ productId: data.value.productId });
       if (response.status === 200) {
         dispatch(deleteProductSuccess({ id: data.value.productId }));
         data.setToastSuccess(response.code);
+        if (getData) {
+          const state = getState();
+          dispatch(
+            getListProductsAsync({
+              data: {
+                value: {
+                  page: getData.page || query.page,
+                  limit: getData.limit || query.limit,
+                  textSearch: getData.textSearch,
+                  ...state.product.filter,
+                },
+                setToastSuccess: () => {},
+                setToastError: () => {},
+              },
+            })
+          );
+        }
       }
     } catch (error: any) {
       dispatch(setStatus('failed'));

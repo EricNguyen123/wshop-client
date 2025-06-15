@@ -4,6 +4,7 @@ import {
   ICreateUserReq,
   IDeleteUserReq,
   IGetDetailUserReq,
+  IGetListReq,
   IGetListUsersReq,
   IUpdateUserReq,
   IUploadAvatarReq,
@@ -30,6 +31,7 @@ import {
   updateUserApi,
   uploadAvatarApi,
 } from './api';
+import { query } from '@/constant/common';
 
 export const changePasswordAsync =
   (payload: { data: IChangePasswordReq; userId: string }) => async (dispatch: AppDispatch) => {
@@ -134,14 +136,29 @@ export const createUserAsync =
   };
 
 export const deleteUserAsync =
-  (payload: { data: IDeleteUserReq }) => async (dispatch: AppDispatch) => {
-    const { data } = payload;
+  (payload: { data: IDeleteUserReq; getData?: IGetListReq }) => async (dispatch: AppDispatch) => {
+    const { data, getData } = payload;
     dispatch(setStatus('loading'));
     try {
       const response = await deleteUserApi({ userId: data.value.userId });
       if (response.status === 200) {
         dispatch(deleteUserSuccess({ id: data.value.userId }));
         data.setToastSuccess(response.code);
+        if (getData) {
+          dispatch(
+            getListUsersAsync({
+              data: {
+                value: {
+                  page: getData.page || query.page,
+                  limit: getData.limit || query.limit,
+                  textSearch: getData.textSearch,
+                },
+                setToastSuccess: () => {},
+                setToastError: () => {},
+              },
+            })
+          );
+        }
       }
     } catch (error: any) {
       dispatch(setStatus('failed'));

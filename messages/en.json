@@ -129,6 +129,9 @@
     },
     "ColorTypes": {
       "label": "Color Types"
+    },
+    "SizeTypes": {
+      "label": "Size Types"
     }
   },
   "Form": {
@@ -491,6 +494,31 @@
         "edit": "'Update the color type information below.",
         "create": "Create a new color type for your palette."
       }
+    },
+    "SizeTypeCreate": {
+      "label": {
+        "name": "Size Name",
+        "sizeCode": "Size Code",
+        "sizeType": "Size Type"
+      },
+      "placeholder": {
+        "name": "Enter name",
+        "sizeCode": "Enter size code",
+        "sizeType": "Enter size type"
+      },
+      "button": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "create": "Create Size Types"
+      },
+      "title": {
+        "edit": "Edit Size Types",
+        "create": "Create Size Types"
+      },
+      "description": {
+        "edit": "'Update the size type information below.",
+        "create": "Create a new size type for your product."
+      }
     }
   },
   "Button": {
@@ -562,6 +590,9 @@
       },
       "colorTypes": {
         "label": "Color Types"
+      },
+      "sizeTypes": {
+        "label": "Size Types"
       }
     },
     "BaseDropBox": {
@@ -830,6 +861,30 @@
       },
       "button": {
         "create": "Add New Color"
+      }
+    },
+    "SizeTypes": {
+      "titleListSizeTypes": "Manage Size Types",
+      "fields": {
+        "id": "ID",
+        "name": "Name",
+        "sizeCode": "Size Code",
+        "sizeType": "Size Type"
+      },
+      "actions": {
+        "copyId": "Copy ID",
+        "edit": "Edit",
+        "delete": "Delete",
+        "dialogs": {
+          "edit": {
+            "title": "Edit Size Type",
+            "cancel": "Cancel",
+            "save": "Save"
+          },
+          "delete": {
+            "title": "Delete Size Type"
+          }
+        }
       }
     }
   },

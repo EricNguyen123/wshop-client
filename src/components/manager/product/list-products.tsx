@@ -397,6 +397,11 @@ export default function ListProducts() {
                     );
                   },
                 },
+                getData: {
+                  page: currentPage,
+                  limit: query.limit,
+                  textSearch: keySearch,
+                },
               })
             );
           }

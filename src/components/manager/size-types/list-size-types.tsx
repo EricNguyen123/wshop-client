@@ -4,79 +4,77 @@
 import { ValidRolesEnum } from '@/common/enum';
 import { UseTable } from '@/components/table/use-table';
 import { Button } from '@/components/ui/button';
-import { columnsKeyBanner, query, sort, symbols } from '@/constant/common';
-import { IBannerRes } from '@/types/common';
+import { columnsKeyBanner, columnsKeySizeType, query, sort, symbols } from '@/constant/common';
+import { ISizeTypeRes } from '@/types/common';
 import type { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, Copy, Eye, SquarePen, Trash } from 'lucide-react';
+import { ArrowUpDown, Copy, SquarePen, Trash } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/lib/store/hooks';
 import { showErrorToast, showSuccessToast } from '@/components/toast/custom-toast';
 import { ActionButton } from '@/components/button/button-action';
 import BasePagination from '@/components/pagination/base-pagination';
-import { useRouter } from '@/i18n/navigation';
-import config from '@/config';
 import { selectCurrentAccount } from '@/lib/store/features/auth/slice';
 import { DeleteConfirmation } from '@/components/delete/delete-confirmation';
 import BaseTitle from '@/components/box/drop-box/base-title';
-import { deleteBannerAsync, getListBannersAsync } from '@/lib/store/features/banner/thunk';
-import { selectBanners } from '@/lib/store/features/banner/slice';
-import Image from 'next/image';
-import { DescriptionCell } from './description-cell';
-import { format } from 'date-fns';
-import BannerFeatures from './banner-features';
-import BannerForm from './banner-form';
-import images from '@/assets/images';
+import { deleteSizeTypeAsync, getListSizeTypesAsync } from '@/lib/store/features/size-type/thunk';
+import { DescriptionCell } from '../banner/description-cell';
+import { selectSizeTypes } from '@/lib/store/features/size-type/slice';
+import SizeTypeForm from './size-type-form';
+import SizeTypeFeatures from './size-type-features';
+import { NewItemIndicator } from '../category/new-item-indicator';
 
-export default function ListBanners() {
-  const t = useTranslations('Component.Banners');
-  const [data, setData] = useState<IBannerRes[]>([]);
+export default function ListSizeTypes() {
+  const t = useTranslations('Component.SizeTypes');
+  const [data, setData] = useState<ISizeTypeRes[]>([]);
   const dispatch = useAppDispatch();
   const tMessage = useTranslations('Messages.error');
-  const getBanners = useAppSelector(selectBanners);
+  const getSizeTypes = useAppSelector(selectSizeTypes);
   const currentAccount = useAppSelector(selectCurrentAccount);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [keySearch, setKeySearch] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(query.page);
   const [totalPages, setTotalPages] = useState<number>(query.totalPages);
-  const routes = useRouter();
 
-  const columns: ColumnDef<IBannerRes>[] = [
+  const columns: ColumnDef<ISizeTypeRes>[] = [
     {
-      accessorKey: columnsKeyBanner.url,
+      accessorKey: columnsKeySizeType.name,
       header: () => {
         return (
           <Button className='w-full' variant='ghost'>
-            {t('fields.url')}
+            {t('fields.name')}
           </Button>
         );
       },
-      cell: ({ row }) => (
-        <div className='w-full flex items-center justify-center'>
-          {row.getValue('url') ? (
-            <div className='relative h-18 w-32 overflow-hidden rounded-md border border-border shadow-sm'>
-              <Image
-                src={row.getValue('url') || images.noImage}
-                alt={`Banner ${row.getValue('descriptions') || 'image'}`}
-                fill
-                sizes='(max-width: 768px) 100vw, 128px'
-                className='object-cover transition-transform hover:scale-105'
-                onError={(e) => {
-                  e.currentTarget.src = `${images.noImage}?height=64&width=128`;
-                }}
-              />
-            </div>
-          ) : (
-            <div className='flex h-16 w-32 items-center justify-center rounded-md border border-border bg-muted/30'>
-              <span className='text-xs text-muted-foreground'>{symbols.inValid}</span>
-            </div>
-          )}
-        </div>
-      ),
+      cell: ({ row }) => {
+        const name = row.getValue('name');
+        return (
+          <div className='w-full flex items-center justify-center'>
+            {name ? (
+              <div className='max-w-xs flex items-center space-x-2'>
+                <NewItemIndicator
+                  createdAt={`${row.original.createdAt}`}
+                  newThreshold={1 / 4} // 15 minutes
+                  variant='pulse'
+                  size='sm'
+                  className='mr-2'
+                />
+                <DescriptionCell
+                  description={typeof name === 'string' ? name : ''}
+                  variant='tooltip'
+                  className='w-full'
+                />
+              </div>
+            ) : (
+              <span className='text-sm text-muted-foreground'>{symbols.inValid}</span>
+            )}
+          </div>
+        );
+      },
       enableHiding: false,
     },
     {
-      accessorKey: columnsKeyBanner.descriptions,
+      accessorKey: columnsKeySizeType.sizeCode,
       header: ({ column }) => {
         return (
           <Button
@@ -84,19 +82,19 @@ export default function ListBanners() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
           >
-            {t('fields.descriptions')}
+            {t('fields.sizeCode')}
             <ArrowUpDown />
           </Button>
         );
       },
       cell: ({ row }) => {
-        const description = row.getValue('descriptions');
+        const sizeCode = row.getValue('sizeCode');
         return (
           <div className='w-full flex items-center justify-center'>
-            {description ? (
+            {sizeCode ? (
               <div className='max-w-xs'>
                 <DescriptionCell
-                  description={typeof description === 'string' ? description : ''}
+                  description={typeof sizeCode === 'string' ? sizeCode : ''}
                   variant='tooltip'
                   className='w-full'
                 />
@@ -109,7 +107,7 @@ export default function ListBanners() {
       },
     },
     {
-      accessorKey: columnsKeyBanner.startDate,
+      accessorKey: columnsKeySizeType.sizeType,
       header: ({ column }) => {
         return (
           <Button
@@ -117,7 +115,7 @@ export default function ListBanners() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
           >
-            {t('fields.startDate')}
+            {t('fields.sizeType')}
             <ArrowUpDown />
           </Button>
         );
@@ -125,74 +123,29 @@ export default function ListBanners() {
       cell: ({ row }) => (
         <div className='w-full flex items-center justify-center'>
           <span className='w-max text-nowrap text-sm font-normal'>
-            {row.getValue('startDate') ? format(row.getValue('startDate'), 'PP') : symbols.inValid}
+            {row.getValue('sizeType') ? row.getValue('sizeType') : symbols.inValid}
           </span>
         </div>
       ),
-    },
-    {
-      accessorKey: columnsKeyBanner.endDate,
-      header: ({ column }) => {
-        return (
-          <Button
-            className='w-full'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
-          >
-            {t('fields.endDate')}
-            <ArrowUpDown />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        <div className='w-full flex items-center justify-center'>
-          <span className='w-max text-nowrap text-sm font-normal'>
-            {row.getValue('endDate') ? format(row.getValue('endDate'), 'PP') : symbols.inValid}
-          </span>
-        </div>
-      ),
-    },
-    {
-      accessorKey: columnsKeyBanner.numberOrder,
-      header: ({ column }) => {
-        return (
-          <Button
-            className='w-full'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === sort.asc)}
-          >
-            {t('fields.numberOrder')}
-            <ArrowUpDown />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        <div className='w-full flex items-center justify-center'>
-          <span className='w-max text-nowrap text-sm font-normal'>
-            {row.getValue('numberOrder') ? row.getValue('numberOrder') : symbols.inValid}
-          </span>
-        </div>
-      ),
-      enableHiding: false,
     },
     {
       id: columnsKeyBanner.actions,
       enableHiding: false,
 
       cell: ({ row }) => {
-        const banner = row.original;
+        const sizeType = row.original;
         const handle = () => {
-          if (banner.id) {
-            return navigator.clipboard.writeText(banner.id);
+          if (sizeType.id) {
+            return navigator.clipboard.writeText(sizeType.id);
           }
         };
 
         const handleDelete = () => {
-          if (banner.id) {
+          if (sizeType.id) {
             dispatch(
-              deleteBannerAsync({
+              deleteSizeTypeAsync({
                 data: {
-                  value: { bannerId: banner.id },
+                  value: { sizeTypeId: sizeType.id },
                   setToastSuccess: (status?: number) => {
                     showSuccessToast(tMessage(`toast.${status?.toString()}`));
                   },
@@ -213,7 +166,10 @@ export default function ListBanners() {
         };
 
         return (
-          <div className='w-max' onClick={(e) => e.stopPropagation()}>
+          <div
+            className='w-full flex items-center justify-end'
+            onClick={(e) => e.stopPropagation()}
+          >
             <ActionButton
               currentRole={currentAccount?.user.role ?? ValidRolesEnum.USER}
               dropdownClassName='absolute right-[-36px]'
@@ -231,14 +187,10 @@ export default function ListBanners() {
                   icon: <SquarePen className='h-4 w-4' />,
                   dialog: {
                     title: t('actions.dialogs.edit.title'),
-                    content: <BannerForm bannerId={banner.id} variant='edit' data={banner} />,
+                    content: (
+                      <SizeTypeForm sizeTypeId={sizeType.id} variant='edit' data={sizeType} />
+                    ),
                   },
-                  roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
-                },
-                {
-                  content: t('actions.detail'),
-                  icon: <Eye className='h-4 w-4' />,
-                  onSelect: () => routes.push(`${config.routes.private.banners}/${banner.id}`),
                   roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
                 },
                 {
@@ -250,10 +202,7 @@ export default function ListBanners() {
                       <DeleteConfirmation
                         title={t('actions.dialogs.delete.title')}
                         onDelete={handleDelete}
-                        itemName={`${format(row.getValue('startDate'), 'PP')} - ${format(
-                          row.getValue('endDate'),
-                          'PP'
-                        )}`}
+                        itemName={`${sizeType.name}`}
                       />
                     ),
                   },
@@ -272,7 +221,7 @@ export default function ListBanners() {
 
     setIsLoading(true);
     dispatch(
-      getListBannersAsync({
+      getListSizeTypesAsync({
         data: {
           value: {
             page: query.page,
@@ -298,18 +247,18 @@ export default function ListBanners() {
   }, [dispatch, tMessage]);
 
   useEffect(() => {
-    if (getBanners?.data) {
-      setData(getBanners?.data);
-      setTotalPages(getBanners?.totalPages);
+    if (getSizeTypes?.data) {
+      setData(getSizeTypes?.data as ISizeTypeRes[]);
+      setTotalPages(getSizeTypes?.totalPages);
       setIsLoading(false);
     }
-  }, [getBanners]);
+  }, [getSizeTypes]);
 
-  const handleGetBanners = (payload: { page?: number; limit?: number; textSearch?: string }) => {
+  const handleGetSizeTypes = (payload: { page?: number; limit?: number; textSearch?: string }) => {
     const { page, limit, textSearch } = payload;
     setIsLoading(true);
     dispatch(
-      getListBannersAsync({
+      getListSizeTypesAsync({
         data: {
           value: {
             page: page || query.page,
@@ -331,39 +280,28 @@ export default function ListBanners() {
   const handleSearch = (value: string) => {
     setKeySearch(value);
     setCurrentPage(query.page);
-    handleGetBanners({ page: query.page, textSearch: value });
+    handleGetSizeTypes({ page: query.page, textSearch: value });
   };
 
   const handlePageChange = (page: number) => {
     if (keySearch.trim() !== '') {
-      handleGetBanners({ page, textSearch: keySearch });
+      handleGetSizeTypes({ page, textSearch: keySearch });
     } else {
-      handleGetBanners({ page });
+      handleGetSizeTypes({ page });
     }
   };
 
   return (
     <div className='container  space-y-4'>
       <div className='flex justify-between items-center'>
-        <BaseTitle title={t('titleListBanners')} />
+        <BaseTitle title={t('titleListSizeTypes')} />
       </div>
       <UseTable
         onChange={handleSearch}
         columns={columns}
         data={data}
         isLoading={isLoading}
-        onRowClick={(row) => {
-          const banner = row.original;
-          if (
-            banner.id &&
-            [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR].includes(
-              currentAccount?.user.role ?? ValidRolesEnum.USER
-            )
-          ) {
-            routes.push(`${config.routes.private.banners}/${banner.id}`);
-          }
-        }}
-        moreFeatures={<BannerFeatures />}
+        moreFeatures={<SizeTypeFeatures />}
       />
       {totalPages > 1 && (
         <BasePagination

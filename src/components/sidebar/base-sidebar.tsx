@@ -2,7 +2,16 @@
 
 import React from 'react';
 import GroupSidebar from './group-sidebar';
-import { Boxes, Folders, GalleryVertical, Package, Palette, User, Users } from 'lucide-react';
+import {
+  Boxes,
+  Folders,
+  GalleryVertical,
+  Package,
+  Palette,
+  Ruler,
+  User,
+  Users,
+} from 'lucide-react';
 import config from '@/config';
 import { useTranslations } from 'next-intl';
 import { ValidRolesEnum } from '@/common/enum';
@@ -45,6 +54,12 @@ export default function BaseSidebar() {
           title: t('colorTypes.label'),
           icon: Palette,
           url: config.routes.private.colorTypes,
+          roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
+        },
+        {
+          title: t('sizeTypes.label'),
+          icon: Ruler,
+          url: config.routes.private.sizeTypes,
           roles: [ValidRolesEnum.ADMIN, ValidRolesEnum.EDITOR],
         },
       ],

@@ -14,3 +14,5 @@ export const VALIDATION_CONFIG = {
 export const DEFAULT_TIME_OUT = 10000; // 10 seconds
 
 export const DEFAULT_LENGTH_OTP = 6;
+
+export const DEFAULT_LIMIT_COLOR_TYPES = 9;

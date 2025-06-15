@@ -129,6 +129,9 @@
     },
     "ColorTypes": {
       "label": "Kiểu màu"
+    },
+    "SizeTypes": {
+      "label": "Các loại kích thước"
     }
   },
   "Form": {
@@ -491,6 +494,31 @@
         "edit": "Cập nhật thông tin loại màu bên dưới.",
         "create": "Tạo loại màu mới cho bảng màu của bạn."
       }
+    },
+    "SizeTypeCreate": {
+      "label": {
+        "name": "Tên kích thước",
+        "sizeCode": "Mã kích thước",
+        "sizeType": "Loại kích thước"
+      },
+      "placeholder": {
+        "name": "Nhập tên",
+        "sizeCode": "Nhập mã kích thước",
+        "sizeType": "Nhập loại kích thước"
+      },
+      "button": {
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "create": "Tạo loại kích thước"
+      },
+      "title": {
+        "edit": "Chỉnh sửa loại kích thước",
+        "create": "Tạo loại kích thước"
+      },
+      "description": {
+        "edit": "Cập nhật thông tin loại kích thước bên dưới.",
+        "create": "Tạo loại kích thước mới cho sản phẩm của bạn."
+      }
     }
   },
   "Button": {
@@ -562,6 +590,9 @@
       },
       "colorTypes": {
         "label": "Kiểu màu"
+      },
+      "sizeTypes": {
+        "label": "Các loại kích thước"
       }
     },
     "BaseDropBox": {
@@ -828,6 +859,30 @@
       },
       "button": {
         "create": "Thêm màu mới"
+      }
+    },
+    "SizeTypes": {
+      "titleListSizeTypes": "Quản lý loại kích thước",
+      "fields": {
+        "id": "ID",
+        "name": "Tên",
+        "sizeCode": "Mã kích thước",
+        "sizeType": "Loại kích thước"
+      },
+      "actions": {
+        "copyId": "Sao chép ID",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa",
+        "dialogs": {
+          "edit": {
+            "title": "Chỉnh sửa loại kích thước",
+            "cancel": "Hủy",
+            "save": "Lưu"
+          },
+          "delete": {
+            "title": "Xóa loại kích thước"
+          }
+        }
       }
     }
   },

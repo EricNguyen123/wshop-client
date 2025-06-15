@@ -16,6 +16,10 @@ const initialState: IBannerState = {
   detail: undefined,
   banners: undefined,
   status: 'idle',
+  filter: {
+    startDate: undefined,
+    endDate: undefined,
+  },
 };
 
 export const bannerSlice = createSlice({
@@ -93,11 +97,16 @@ export const bannerSlice = createSlice({
     setStatus: (state, action: PayloadAction<TStatusSlice>) => {
       state.status = action.payload;
     },
+
+    setFilter: (state, action) => {
+      state.filter = action.payload;
+    },
   },
 });
 
 export const {
   setStatus,
+  setFilter,
   getListBannersSuccess,
   createBannerSuccess,
   updateBannerSuccess,

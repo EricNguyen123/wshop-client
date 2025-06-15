@@ -9,6 +9,7 @@ import bannerReducer from './features/banner/slice';
 import productReducer from './features/product/slice';
 import categoryReducer from './features/category/slice';
 import colorTypeReducer from './features/color-type/slice';
+import sizeTypeReducer from './features/size-type/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -19,7 +20,7 @@ const authPersistConfig = {
 const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'user', 'banner', 'product', 'category', 'colorType'],
+  whitelist: ['auth', 'user', 'banner', 'product', 'category', 'colorType', 'sizeType'],
 };
 
 const rootReducer = combineReducers({
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   product: productReducer,
   category: categoryReducer,
   colorType: colorTypeReducer,
+  sizeType: sizeTypeReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

@@ -20,6 +20,7 @@ import { showErrorToast, showSuccessToast } from '@/components/toast/custom-toas
 import { useTranslations } from 'next-intl';
 import { selectColorTypes } from '@/lib/store/features/color-type/slice';
 import BasePagination from '@/components/pagination/base-pagination';
+import { DEFAULT_LIMIT_COLOR_TYPES } from '@/constant';
 
 export function ListColorTypes() {
   const t = useTranslations('Component.ColorTypes');
@@ -91,6 +92,11 @@ export function ListColorTypes() {
             showErrorToast(tMessage(`toast.${status}`) || tMessage('toast.error'));
           },
         },
+        getData: {
+          page: currentPage,
+          limit: DEFAULT_LIMIT_COLOR_TYPES || query.limit,
+          textSearch: searchTerm,
+        },
       })
     );
   };
@@ -108,7 +114,7 @@ export function ListColorTypes() {
         data: {
           value: {
             page: query.page,
-            limit: query.limit,
+            limit: DEFAULT_LIMIT_COLOR_TYPES || query.limit,
           },
           setToastSuccess: (status) => {
             if (isMounted) {
@@ -147,7 +153,7 @@ export function ListColorTypes() {
         data: {
           value: {
             page: page || query.page,
-            limit: limit || query.limit,
+            limit: limit || DEFAULT_LIMIT_COLOR_TYPES || query.limit,
             textSearch,
             ...rest,
           },

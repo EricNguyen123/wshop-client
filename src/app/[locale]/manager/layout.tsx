@@ -20,6 +20,7 @@ export default function LayoutManager({ children }: IProps) {
     [config.routes.private.products]: t('products.label'),
     [config.routes.private.categories]: t('categories.label'),
     [config.routes.private.colorTypes]: t('colorTypes.label'),
+    [config.routes.private.sizeTypes]: t('sizeTypes.label'),
   };
   const currentTitle = useCurrentTitle(pathname, pathToTitle);
 

@@ -16,6 +16,9 @@ const initialState: IProductState = {
   detail: undefined,
   products: undefined,
   status: 'idle',
+  filter: {
+    status: undefined,
+  },
 };
 
 export const productSlice = createSlice({
@@ -97,11 +100,16 @@ export const productSlice = createSlice({
     setStatus: (state, action: PayloadAction<TStatusSlice>) => {
       state.status = action.payload;
     },
+
+    setFilter: (state, action) => {
+      state.filter = action.payload;
+    },
   },
 });
 
 export const {
   setStatus,
+  setFilter,
   getListProductsSuccess,
   createProductSuccess,
   updateProductSuccess,

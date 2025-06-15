@@ -68,6 +68,13 @@ export const MESSAGES = {
         NAME: { REQUIRED: 'category.create.name.required' },
       },
     },
+    SIZE_TYPE: {
+      CREATE: {
+        NAME: { REQUIRED: 'sizeType.create.name.required' },
+        SIZE_CODE: { REQUIRED: 'sizeType.create.sizeCode.required' },
+        SIZE_TYPE: { REQUIRED: 'sizeType.create.sizeType.required' },
+      },
+    },
   },
 };
 

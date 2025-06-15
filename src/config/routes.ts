@@ -15,6 +15,8 @@ const routes = {
     categories: '/manager/categories',
     applyProduct: (id: string | number) => `/manager/categories/${id}/apply-product`,
     colorTypes: '/manager/color-types',
+    sizeTypes: '/manager/size-types',
+    productTypes: '/manager/product-types',
   },
   protected: {
     google: '/auth/google/login',

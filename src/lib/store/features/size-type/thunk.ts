@@ -1,35 +1,35 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-  ICreateColorTypeReq,
-  IDeleteColorTypeReq,
-  IGetListColorTypesReq,
+  ICreateSizeTypeReq,
+  IDeleteSizeTypeReq,
   IGetListReq,
-  IUpdateColorTypeReq,
+  IGetListSizeTypesReq,
+  IUpdateSizeTypeReq,
 } from '@/types/common';
 import { AppDispatch } from '../../store';
 import {
-  createColorTypeApi,
-  deleteColorTypeApi,
-  getListColorTypesApi,
-  updateColorTypeApi,
-} from './api';
-import {
-  createColorTypeSuccess,
-  deleteColorTypeSuccess,
-  getListColorTypesSuccess,
+  createSizeTypeSuccess,
+  deleteSizeTypeSuccess,
+  getListSizeTypesSuccess,
   setStatus,
-  updateColorTypeSuccess,
+  updateSizeTypeSuccess,
 } from './slice';
+import {
+  createSizeTypeApi,
+  deleteSizeTypeApi,
+  getListSizeTypesApi,
+  updateSizeTypeApi,
+} from './api';
 import { query } from '@/constant/common';
 
-export const getListColorTypesAsync =
-  (payload: { data: IGetListColorTypesReq }) => async (dispatch: AppDispatch) => {
+export const getListSizeTypesAsync =
+  (payload: { data: IGetListSizeTypesReq }) => async (dispatch: AppDispatch) => {
     const { data } = payload;
     dispatch(setStatus('loading'));
     try {
-      const response = await getListColorTypesApi({ data: data.value });
+      const response = await getListSizeTypesApi({ data: data.value });
       if (response.status === 200) {
-        dispatch(getListColorTypesSuccess(response));
+        dispatch(getListSizeTypesSuccess(response));
         data.setToastSuccess(response.code);
       }
     } catch (error: any) {
@@ -40,14 +40,14 @@ export const getListColorTypesAsync =
     }
   };
 
-export const createColorTypeAsync =
-  (payload: { data: ICreateColorTypeReq }) => async (dispatch: AppDispatch) => {
+export const createSizeTypeAsync =
+  (payload: { data: ICreateSizeTypeReq }) => async (dispatch: AppDispatch) => {
     const { data } = payload;
     dispatch(setStatus('loading'));
     try {
-      const response = await createColorTypeApi({ data: data.value });
+      const response = await createSizeTypeApi({ data: data.value });
       if (response.status === 200) {
-        dispatch(createColorTypeSuccess(response));
+        dispatch(createSizeTypeSuccess(response));
         data.setToastSuccess(response.code);
       }
     } catch (error: any) {
@@ -58,15 +58,14 @@ export const createColorTypeAsync =
     }
   };
 
-export const updateColorTypeAsync =
-  (payload: { data: IUpdateColorTypeReq; colorTypeId: string }) =>
-  async (dispatch: AppDispatch) => {
-    const { data, colorTypeId } = payload;
+export const updateSizeTypeAsync =
+  (payload: { data: IUpdateSizeTypeReq; sizeTypeId: string }) => async (dispatch: AppDispatch) => {
+    const { data, sizeTypeId } = payload;
     dispatch(setStatus('loading'));
     try {
-      const response = await updateColorTypeApi({ data: data.value, colorTypeId });
+      const response = await updateSizeTypeApi({ data: data.value, sizeTypeId });
       if (response.status === 200) {
-        dispatch(updateColorTypeSuccess(response));
+        dispatch(updateSizeTypeSuccess(response));
         data.setToastSuccess(response.code);
       }
     } catch (error: any) {
@@ -77,20 +76,20 @@ export const updateColorTypeAsync =
     }
   };
 
-export const deleteColorTypeAsync =
-  (payload: { data: IDeleteColorTypeReq; getData?: IGetListReq }) =>
+export const deleteSizeTypeAsync =
+  (payload: { data: IDeleteSizeTypeReq; getData?: IGetListReq }) =>
   async (dispatch: AppDispatch) => {
     const { data, getData } = payload;
     dispatch(setStatus('loading'));
     try {
-      const response = await deleteColorTypeApi({ colorTypeId: data.value.colorTypeId });
+      const response = await deleteSizeTypeApi({ sizeTypeId: data.value.sizeTypeId });
       if (response.status === 200) {
-        dispatch(deleteColorTypeSuccess({ id: data.value.colorTypeId }));
+        dispatch(deleteSizeTypeSuccess({ id: data.value.sizeTypeId }));
         data.setToastSuccess(response.code);
 
         if (getData) {
           dispatch(
-            getListColorTypesAsync({
+            getListSizeTypesAsync({
               data: {
                 value: {
                   page: getData.page || query.page,

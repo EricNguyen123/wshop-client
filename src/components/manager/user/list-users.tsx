@@ -307,6 +307,11 @@ export default function ListUsers() {
                     );
                   },
                 },
+                getData: {
+                  page: currentPage,
+                  limit: query.limit,
+                  textSearch: keySearch,
+                },
               })
             );
           }

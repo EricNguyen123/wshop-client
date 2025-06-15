@@ -286,6 +286,10 @@ export interface IBannerState {
   detail: IBannerRes | undefined;
   banners: IGetListBannersRes | undefined;
   status: TStatusSlice;
+  filter: {
+    startDate?: string;
+    endDate?: string;
+  };
 }
 
 export interface IBannerRes {
@@ -378,6 +382,9 @@ export interface IProductState {
   detail: IProductRes | undefined;
   products: IGetListProductsRes | undefined;
   status: TStatusSlice;
+  filter: {
+    status?: string | number;
+  };
 }
 
 export interface IGetListProductsResponse extends IBaseResponse {
@@ -660,6 +667,84 @@ export interface IUpdateColorTypeReq {
 export interface IDeleteColorTypeReq {
   value: {
     colorTypeId: string;
+  };
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface ISizeTypeRes {
+  id?: string;
+  name?: string;
+  sizeCode?: string;
+  sizeType?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ISizeType {
+  id: string;
+  name: string;
+  sizeCode: string;
+  sizeType: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ICreateSizeType {
+  name: string;
+  sizeCode: string;
+  sizeType: string;
+}
+
+export interface IUpdateSizeType {
+  name?: string;
+  sizeCode?: string;
+  sizeType?: string;
+}
+
+export interface ISizeTypeState {
+  detail: ISizeType | undefined;
+  sizeTypes: IGetListSizeTypesRes | undefined;
+  status: TStatusSlice;
+}
+
+export interface IGetListSizeTypesRes extends IBaseGetListResponse {
+  data: ISizeType[];
+}
+
+export interface IGetListSizeTypesResponse extends IBaseResponse {
+  data: IGetListSizeTypesRes;
+}
+
+export interface ICreateSizeTypeResponse extends IBaseResponse {
+  data: ISizeType;
+}
+
+export interface IUpdateSizeTypeResponse extends IBaseResponse {
+  data: ISizeType;
+}
+
+export interface IGetListSizeTypesReq {
+  value: IGetListReq;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface ICreateSizeTypeReq {
+  value: ICreateSizeType;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IUpdateSizeTypeReq {
+  value: IUpdateSizeType;
+  setToastSuccess: (status?: number) => void;
+  setToastError: (status?: number) => void;
+}
+
+export interface IDeleteSizeTypeReq {
+  value: {
+    sizeTypeId: string;
   };
   setToastSuccess: (status?: number) => void;
   setToastError: (status?: number) => void;
